@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">GurukuStudent</string>
+
+    <!--LoginActivity-->
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
+    <string name="txt_btn_login">Masuk</string>
+    <string name="txt_btn_daftar">Daftar</string>
+</resources>
