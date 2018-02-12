@@ -24,7 +24,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Login"
+                android:text="@string/txt_login"
                 android:textSize="32sp"
                 android:textColor="@color/colorWhite"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
