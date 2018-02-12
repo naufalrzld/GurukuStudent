@@ -44,6 +44,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/hint_username"
                     android:textColor="@color/colorWhite"
+                    android:singleLine="true"
                     android:fontFamily="sans-serif"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -92,7 +93,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/txt_btn_login"
                     android:textColor="@color/colorWhite"
-                    android:background="@drawable/btn_round_masuk"
+                    android:background="@drawable/btn_click_masuk"
                     android:layout_weight="1"/>
 
             </LinearLayout>

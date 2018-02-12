@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GurukuStudent</string>
+    <string name="app_name">GuruKu</string>
 
     <!--LoginActivity-->
     <string name="txt_login">Login</string>
@@ -15,4 +15,15 @@
     <string name="hint_email">Email</string>
     <string name="hint_notlp">Nomor Telepon</string>
     <string name="hint_cPassword">Konfirmasi Password</string>
+
+    <!--menu_nav_bottom-->
+    <string name="title_home">Beranda</string>
+    <string name="title_guru">Guru</string>
+    <string name="title_akun">Akun</string>
+
+    <!--AccountFragment-->
+    <string name="tv_name">Nama</string>
+    <string name="tv_saldo">Saldo</string>
+    <string name="tv_about">Tentang</string>
+    <string name="tv_logout">Keluar</string>
 </resources>

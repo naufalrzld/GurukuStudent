@@ -14,4 +14,7 @@ import retrofit2.http.POST;
 public interface MemberInterface {
     @POST("/akun/login")
     Call<LoginResponse> APILogin(@Body JSONObject param);
+
+    @POST("/akun/register")
+    Call<String> APIRegister(@Body JSONObject param);
 }

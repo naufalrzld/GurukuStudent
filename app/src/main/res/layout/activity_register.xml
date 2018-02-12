@@ -6,10 +6,7 @@
     android:layout_height="match_parent"
     tools:context="mbd.student.gurukustudent.activity.RegisterActivity"
     android:background="@color/colorPrimary"
-    android:paddingLeft="15dp"
-    android:paddingRight="15dp"
-    android:paddingTop="40dp"
-    android:paddingBottom="40dp">
+    android:padding="15dp">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -26,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:padding="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -50,6 +47,8 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_fName"
                         android:textColor="@color/colorWhite"
+                        android:singleLine="true"
+                        android:inputType="textCapWords"
                         android:fontFamily="sans-serif"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -66,6 +65,8 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_lName"
                         android:textColor="@color/colorWhite"
+                        android:singleLine="true"
+                        android:inputType="textCapWords"
                         android:fontFamily="sans-serif"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -82,6 +83,7 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_username"
                         android:textColor="@color/colorWhite"
+                        android:singleLine="true"
                         android:fontFamily="sans-serif"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -98,6 +100,8 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_email"
                         android:textColor="@color/colorWhite"
+                        android:inputType="textEmailAddress"
+                        android:singleLine="true"
                         android:fontFamily="sans-serif"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -114,6 +118,8 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_notlp"
                         android:textColor="@color/colorWhite"
+                        android:inputType="number"
+                        android:singleLine="true"
                         android:fontFamily="sans-serif"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -132,6 +138,7 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_password"
                         android:textColor="@color/colorWhite"
+                        android:singleLine="true"
                         android:fontFamily="sans-serif"
                         android:inputType="textPassword"/>
 
@@ -149,6 +156,7 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_cPassword"
                         android:textColor="@color/colorWhite"
+                        android:singleLine="true"
                         android:fontFamily="sans-serif"
                         android:inputType="textPassword"/>
 

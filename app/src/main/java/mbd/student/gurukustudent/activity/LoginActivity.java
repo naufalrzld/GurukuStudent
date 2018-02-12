@@ -133,9 +133,12 @@ public class LoginActivity extends AppCompatActivity {
                         String json = new Gson().toJson(response.body());
                         Log.d("response", json);
 
-                        /*Member member = response.body().getMember();
+                        Member member = response.body().getMember();
                         sharedPreferencesUtils.storeData("profile", member);
-                        session.setLogin(true);*/
+                        session.setLogin(true);
+
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        finish();
                     } else {
                         APIErrorModel error = APIErrorUtils.parserError(response);
                         String message = error.getMessage();
