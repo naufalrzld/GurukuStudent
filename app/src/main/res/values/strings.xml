@@ -26,4 +26,10 @@
     <string name="tv_saldo">Saldo</string>
     <string name="tv_about">Tentang</string>
     <string name="tv_logout">Keluar</string>
+
+    <!--GuruFragment-->
+    <string name="noData">Guru Tidak Tersedia</string>
+
+    <!--GuruItem-->
+    <string name="tv_per_jam">per jam</string>
 </resources>

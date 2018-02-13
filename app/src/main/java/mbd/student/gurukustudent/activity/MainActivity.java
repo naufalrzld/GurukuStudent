@@ -3,10 +3,12 @@ package mbd.student.gurukustudent.activity;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 
 import butterknife.BindView;
@@ -40,19 +42,29 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment fragment;
+            Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.container);
             switch (item.getItemId()) {
                 case R.id.nav_home :
-                    fragment = new HomeFragment();
-                    loadFragment(fragment);
-                    return true;
+                    if (!(currentFragment instanceof HomeFragment)) {
+                        fragment = new HomeFragment();
+                        loadFragment(fragment);
+                        return true;
+                    }
+                    break;
                 case R.id.nav_guru :
-                    fragment = new GuruFragment();
-                    loadFragment(fragment);
-                    return true;
+                    if (!(currentFragment instanceof GuruFragment)) {
+                        fragment = new GuruFragment();
+                        loadFragment(fragment);
+                        return true;
+                    }
+                    break;
                 case R.id.nav_akun :
-                    fragment = new AccountFragment();
-                    loadFragment(fragment);
-                    return true;
+                    if (!(currentFragment instanceof AccountFragment)) {
+                        fragment = new AccountFragment();
+                        loadFragment(fragment);
+                        return true;
+                    }
+                    break;
             }
             return false;
         }
