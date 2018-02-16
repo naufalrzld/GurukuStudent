@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorGrey"
-    tools:context="mbd.student.gurukustudent.activity.DetailTeacherActivity">
+    tools:context="mbd.student.gurukustudent.activity.teacher.DetailTeacherActivity">
 
     <include layout="@layout/custom_toolbar" />
 
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 app:cardBackgroundColor="@color/colorWhite"
-                app:cardCornerRadius="15dp">
+                app:cardCornerRadius="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -61,7 +61,7 @@
                     android:padding="10dp">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="359dp"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:padding="10dp">
@@ -89,18 +89,18 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/colorPrimary"
+                                android:textSize="24sp"
                                 android:textStyle="bold"
-                                android:textSize="16sp"
                                 tools:text="Rp25.000" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="16sp"
-                                android:text="@string/tv_per_jam_2"
                                 android:layout_marginLeft="5dp"
-                                android:layout_marginStart="5dp" />
+                                android:layout_marginStart="5dp"
+                                android:text="@string/tv_per_jam_2"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="16sp" />
 
                         </LinearLayout>
 
@@ -114,7 +114,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardBackgroundColor="@color/colorWhite"
-                app:cardCornerRadius="15dp">
+                app:cardCornerRadius="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -251,7 +251,7 @@
                 android:layout_marginBottom="15dp"
                 android:layout_marginTop="15dp"
                 app:cardBackgroundColor="@color/colorWhite"
-                app:cardCornerRadius="15dp">
+                app:cardCornerRadius="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"

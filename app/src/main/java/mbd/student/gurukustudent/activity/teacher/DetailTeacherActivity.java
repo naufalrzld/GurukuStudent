@@ -1,4 +1,4 @@
-package mbd.student.gurukustudent.activity;
+package mbd.student.gurukustudent.activity.teacher;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,13 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.google.gson.Gson;
-
-import org.json.JSONObject;
 
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -24,7 +21,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import mbd.student.gurukustudent.R;
 import mbd.student.gurukustudent.model.teacher.Teacher;
-import mbd.student.gurukustudent.utils.SharedPreferencesUtils;
 
 public class DetailTeacherActivity extends AppCompatActivity {
     @BindView(R.id.toolbar)
@@ -91,11 +87,12 @@ public class DetailTeacherActivity extends AppCompatActivity {
         tvNoWa.setText(noWA);
         tvLineAccount.setText(lineAccount);
 
-
         btnBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(DetailTeacherActivity.this, BookingTeacherActivity.class);
+                i.putExtra("dataTeacher", dataIntent.getStringExtra("dataTeacher"));
+                startActivity(i);
             }
         });
     }

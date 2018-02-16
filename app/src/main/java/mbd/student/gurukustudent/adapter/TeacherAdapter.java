@@ -21,7 +21,7 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import mbd.student.gurukustudent.R;
-import mbd.student.gurukustudent.activity.DetailTeacherActivity;
+import mbd.student.gurukustudent.activity.teacher.DetailTeacherActivity;
 import mbd.student.gurukustudent.model.teacher.Teacher;
 
 /**

@@ -32,9 +32,24 @@
 
     <!--GuruItem-->
     <string name="tv_per_jam">per jam</string>
-    
+
     <!--TeacherDetail-->
     <string name="activity_title_detail_teacher">Rincian Guru</string>
     <string name="txt_btn_book">Pesan Guru</string>
     <string name="tv_per_jam_2">/ jam</string>
+
+    <!--BookingTeacherActivity-->
+    <string name="activity_title_booking_teacher">Pemesanan</string>
+    <string name="title_teacher_name">Nama Guru :</string>
+    <string name="rb_title_one_h">1 Jam</string>
+    <string name="rb_title_two_h">2 Jam</string>
+    <string name="rb_title_three_h">3 Jam</string>
+    <string name="title_payment_method">Pilih metode pembayaran</string>
+    <string name="rb_title_wallet">Wallet</string>
+    <string name="rb_title_cash">Tunai</string>
+    <string name="txt_keterangan_wallet">Pastikan saldo yang anda miliki cukup untuk melakukan transaksi ini.</string>
+    <string name="txt_keterangan_cash">Silahkan melakukan pembayaran secara cash kepada Guru yang bersangkutan dengan jumlah yang telah ditetapkan.</string>
+    <string name="txt_attention">PERHATIAN: Apabila anda melakukan hal - hal yang dapat merugikan pihak manapun, maka akun anda akan dinonaktifkan secara permanen</string>
+    <string name="txt_saldo_wallet">Saldo Wallet :</string>
+    <string name="txt_btn_next">Lanjutkan</string>
 </resources>
