@@ -1,4 +1,4 @@
-package mbd.student.gurukustudent.model.guru;
+package mbd.student.gurukustudent.model.teacher;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -9,13 +9,13 @@ import java.util.List;
  * Created by Naufal on 13/02/2018.
  */
 
-public class GuruResponse {
+public class TeacherResponse {
     @SerializedName("status")
     @Expose
     private Integer status;
     @SerializedName("data")
     @Expose
-    private List<Guru> guru = null;
+    private List<Teacher> teacher = null;
 
     public Integer getStatus() {
         return status;
@@ -25,11 +25,11 @@ public class GuruResponse {
         this.status = status;
     }
 
-    public List<Guru> getGuru() {
-        return guru;
+    public List<Teacher> getTeacher() {
+        return teacher;
     }
 
-    public void setGuru(List<Guru> guru) {
-        this.guru = guru;
+    public void setTeacher(List<Teacher> teacher) {
+        this.teacher = teacher;
     }
 }

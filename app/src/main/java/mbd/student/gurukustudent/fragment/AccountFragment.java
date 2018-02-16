@@ -1,7 +1,6 @@
 package mbd.student.gurukustudent.fragment;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,13 +13,11 @@ import android.widget.TextView;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
 
-import org.json.JSONObject;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import mbd.student.gurukustudent.R;
 import mbd.student.gurukustudent.activity.LoginActivity;
-import mbd.student.gurukustudent.model.member.Member;
+import mbd.student.gurukustudent.model.student.Student;
 import mbd.student.gurukustudent.utils.SessionManager;
 import mbd.student.gurukustudent.utils.SharedPreferencesUtils;
 
@@ -45,7 +42,7 @@ public class AccountFragment extends Fragment {
     private SharedPreferencesUtils sharedPreferencesUtils;
     private ColorGenerator mColorGenerator = ColorGenerator.DEFAULT;
     private TextDrawable mDrawableBuilder;
-    private Member member;
+    private Student student;
 
     public AccountFragment() {
         // Required empty public constructor
@@ -63,11 +60,11 @@ public class AccountFragment extends Fragment {
         sharedPreferencesUtils = new SharedPreferencesUtils(getContext(), "DataMember");
 
         if (sharedPreferencesUtils.checkIfDataExists("profile")) {
-            member = sharedPreferencesUtils.getObjectData("profile", Member.class);
-            String nama = member.getFirstName() + " " + member.getLastName();
-            String username = member.getUsername();
-            String noTlp = member.getNoTlp();
-            String email = member.getEmail();
+            student = sharedPreferencesUtils.getObjectData("profile", Student.class);
+            String nama = student.getFirstName() + " " + student.getLastName();
+            String username = student.getUsername();
+            String noTlp = student.getNoTlp();
+            String email = student.getEmail();
 
             tvNama.setText(nama);
             tvUsername.setText(username);

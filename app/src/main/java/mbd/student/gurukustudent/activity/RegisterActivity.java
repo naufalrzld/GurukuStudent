@@ -86,7 +86,6 @@ public class RegisterActivity extends AppCompatActivity {
 
                     try {
                         JSONObject params = new JSONObject();
-                        params.put("akunType", "Member");
                         params.put("username", username);
                         params.put("firstName", fName);
                         params.put("lastName", lName);

@@ -23,8 +23,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import mbd.student.gurukustudent.R;
 import mbd.student.gurukustudent.model.APIErrorModel;
-import mbd.student.gurukustudent.model.member.LoginResponse;
-import mbd.student.gurukustudent.model.member.Member;
+import mbd.student.gurukustudent.model.student.LoginResponse;
+import mbd.student.gurukustudent.model.student.Student;
 import mbd.student.gurukustudent.services.RetrofitServices;
 import mbd.student.gurukustudent.utils.APIErrorUtils;
 import mbd.student.gurukustudent.utils.SessionManager;
@@ -133,8 +133,8 @@ public class LoginActivity extends AppCompatActivity {
                         String json = new Gson().toJson(response.body());
                         Log.d("response", json);
 
-                        Member member = response.body().getMember();
-                        sharedPreferencesUtils.storeData("profile", member);
+                        Student student = response.body().getStudent();
+                        sharedPreferencesUtils.storeData("profile", student);
                         session.setLogin(true);
 
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));

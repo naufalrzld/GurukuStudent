@@ -1,13 +1,16 @@
-package mbd.student.gurukustudent.model.guru;
+package mbd.student.gurukustudent.model.student;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by Naufal on 13/02/2018.
+ * Created by Naufal on 10/02/2018.
  */
 
-public class Guru {
+public class Student {
+    @SerializedName("studentID")
+    @Expose
+    private Integer studentID;
     @SerializedName("username")
     @Expose
     private String username;
@@ -23,18 +26,18 @@ public class Guru {
     @SerializedName("no_tlp")
     @Expose
     private String noTlp;
-    @SerializedName("sosmed")
+    @SerializedName("lineAccount")
     @Expose
-    private Object sosmed;
-    @SerializedName("kemampuan")
+    private String lineAccount;
+    @SerializedName("noWA")
     @Expose
-    private String kemampuan;
-    @SerializedName("deskripsi")
+    private String noWA;
+    @SerializedName("igAccount")
     @Expose
-    private String deskripsi;
-    @SerializedName("harga")
+    private String igAccount;
+    @SerializedName("otherAccount")
     @Expose
-    private Integer harga;
+    private String otherAccount;
     @SerializedName("createdAt")
     @Expose
     private String createdAt;
@@ -42,18 +45,12 @@ public class Guru {
     @Expose
     private String updatedAt;
 
-    public Guru(String username, String firstName, String lastName, String email, String noTlp, Object sosmed, String kemampuan, String deskripsi, Integer harga, String createdAt, String updatedAt) {
-        this.username = username;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.noTlp = noTlp;
-        this.sosmed = sosmed;
-        this.kemampuan = kemampuan;
-        this.deskripsi = deskripsi;
-        this.harga = harga;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+    public Integer getStudentID() {
+        return studentID;
+    }
+
+    public void setStudentID(Integer studentID) {
+        this.studentID = studentID;
     }
 
     public String getUsername() {
@@ -96,36 +93,36 @@ public class Guru {
         this.noTlp = noTlp;
     }
 
-    public Object getSosmed() {
-        return sosmed;
+    public String getLineAccount() {
+        return lineAccount;
     }
 
-    public void setSosmed(Object sosmed) {
-        this.sosmed = sosmed;
+    public void setLineAccount(String lineAccount) {
+        this.lineAccount = lineAccount;
     }
 
-    public String getKemampuan() {
-        return kemampuan;
+    public String getNoWA() {
+        return noWA;
     }
 
-    public void setKemampuan(String kemampuan) {
-        this.kemampuan = kemampuan;
+    public void setNoWA(String noWA) {
+        this.noWA = noWA;
     }
 
-    public String getDeskripsi() {
-        return deskripsi;
+    public String getIgAccount() {
+        return igAccount;
     }
 
-    public void setDeskripsi(String deskripsi) {
-        this.deskripsi = deskripsi;
+    public void setIgAccount(String igAccount) {
+        this.igAccount = igAccount;
     }
 
-    public Integer getHarga() {
-        return harga;
+    public String getOtherAccount() {
+        return otherAccount;
     }
 
-    public void setHarga(Integer harga) {
-        this.harga = harga;
+    public void setOtherAccount(String otherAccount) {
+        this.otherAccount = otherAccount;
     }
 
     public String getCreatedAt() {

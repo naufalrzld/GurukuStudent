@@ -1,4 +1,4 @@
-package mbd.student.gurukustudent.model.member;
+package mbd.student.gurukustudent.model.student;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -13,7 +13,7 @@ public class LoginResponse {
     private Integer status;
     @SerializedName("data")
     @Expose
-    private Member member;
+    private Student student;
 
     public Integer getStatus() {
         return status;
@@ -23,11 +23,11 @@ public class LoginResponse {
         this.status = status;
     }
 
-    public Member getMember() {
-        return member;
+    public Student getStudent() {
+        return student;
     }
 
-    public void setMember(Member member) {
-        this.member = member;
+    public void setStudent(Student student) {
+        this.student = student;
     }
 }

@@ -1,6 +1,7 @@
 package mbd.student.gurukustudent.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,29 +12,30 @@ import android.widget.TextView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
+import com.google.gson.Gson;
 
 import java.text.NumberFormat;
-import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import mbd.student.gurukustudent.R;
-import mbd.student.gurukustudent.model.guru.Guru;
+import mbd.student.gurukustudent.activity.DetailTeacherActivity;
+import mbd.student.gurukustudent.model.teacher.Teacher;
 
 /**
  * Created by Naufal on 13/02/2018.
  */
 
-public class GuruAdapter extends RecyclerView.Adapter<GuruAdapter.ViewHolder> {
+public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.ViewHolder> {
     private Context context;
-    private List<Guru> listGutu;
+    private List<Teacher> listGutu;
 
     private ColorGenerator mColorGenerator = ColorGenerator.DEFAULT;
     private TextDrawable mDrawableBuilder;
 
-    public GuruAdapter(Context context, List<Guru> listGutu) {
+    public TeacherAdapter(Context context, List<Teacher> listGutu) {
         this.context = context;
         this.listGutu = listGutu;
     }
@@ -46,22 +48,30 @@ public class GuruAdapter extends RecyclerView.Adapter<GuruAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Guru guru = listGutu.get(position);
+        final Teacher teacher = listGutu.get(position);
 
         Locale localeID = new Locale("in", "ID");
 
         NumberFormat numberFormatCurrency = NumberFormat.getCurrencyInstance(localeID);
         numberFormatCurrency.setMaximumFractionDigits(0);
 
-        String nama = guru.getFirstName() + " " + guru.getLastName();
-        String kemampuan = guru.getKemampuan();
-        int harga = guru.getHarga();
+        String nama = teacher.getFirstName() + " " + teacher.getLastName();
+        int harga = teacher.getPrice();
 
         setProfileImage(holder.profileImage, nama);
 
         holder.tvNamaGuru.setText(nama);
-        holder.tvKemampuan.setText(kemampuan);
         holder.tvHarga.setText(numberFormatCurrency.format(harga));
+        holder.cvItemGuru.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String data = new Gson().toJson(teacher);
+
+                Intent i = new Intent(context, DetailTeacherActivity.class);
+                i.putExtra("dataTeacher", data);
+                context.startActivity(i);
+            }
+        });
     }
 
     @Override

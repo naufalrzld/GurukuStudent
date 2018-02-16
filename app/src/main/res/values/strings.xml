@@ -32,4 +32,9 @@
 
     <!--GuruItem-->
     <string name="tv_per_jam">per jam</string>
+    
+    <!--TeacherDetail-->
+    <string name="activity_title_detail_teacher">Rincian Guru</string>
+    <string name="txt_btn_book">Pesan Guru</string>
+    <string name="tv_per_jam_2">/ jam</string>
 </resources>

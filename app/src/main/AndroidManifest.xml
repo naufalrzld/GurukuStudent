@@ -20,7 +20,8 @@
         </activity>
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.RegisterActivity" />
-        <activity android:name=".activity.LoginActivity"></activity>
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.DetailTeacherActivity"></activity>
     </application>
 
 </manifest>

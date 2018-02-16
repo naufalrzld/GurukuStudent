@@ -20,9 +20,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import mbd.student.gurukustudent.R;
-import mbd.student.gurukustudent.adapter.GuruAdapter;
-import mbd.student.gurukustudent.model.guru.Guru;
-import mbd.student.gurukustudent.model.guru.GuruResponse;
+import mbd.student.gurukustudent.adapter.TeacherAdapter;
+import mbd.student.gurukustudent.model.teacher.Teacher;
+import mbd.student.gurukustudent.model.teacher.TeacherResponse;
 import mbd.student.gurukustudent.services.RetrofitServices;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -39,8 +39,8 @@ public class GuruFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     @BindView(R.id.tvNoData)
     TextView tvNoData;
 
-    private List<Guru> listGuru = new ArrayList<>();
-    private GuruAdapter adapter;
+    private List<Teacher> listTeacher = new ArrayList<>();
+    private TeacherAdapter adapter;
 
     public GuruFragment() {
         // Required empty public constructor
@@ -57,7 +57,7 @@ public class GuruFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
         rvGuru.setHasFixedSize(true);
         rvGuru.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new GuruAdapter(getContext(), listGuru);
+        adapter = new TeacherAdapter(getContext(), listTeacher);
         rvGuru.setAdapter(adapter);
 
         return v;
@@ -71,40 +71,43 @@ public class GuruFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     }
 
     private void getAllDataGuru() {
-        listGuru.clear();
+        listTeacher.clear();
 
         swipeRefreshLayout.setRefreshing(true);
 
         adapter.notifyDataSetChanged();
 
-        Call<GuruResponse> call = RetrofitServices.sendGuruRequest().APIGetAllGuru();
+        Call<TeacherResponse> call = RetrofitServices.sendGuruRequest().APIGetAllGuru();
         if (call != null) {
-            call.enqueue(new Callback<GuruResponse>() {
+            call.enqueue(new Callback<TeacherResponse>() {
                 @Override
-                public void onResponse(@NonNull Call<GuruResponse> call, @NonNull Response<GuruResponse> response) {
+                public void onResponse(@NonNull Call<TeacherResponse> call, @NonNull Response<TeacherResponse> response) {
                     swipeRefreshLayout.setRefreshing(false);
                     if (response.isSuccessful()) {
-                        int count = response.body().getGuru().size();
+                        int count = response.body().getTeacher().size();
 
                         for (int i=0; i<count; i++) {
-                            String username = response.body().getGuru().get(i).getUsername();
-                            String firstName = response.body().getGuru().get(i).getFirstName();
-                            String lastName = response.body().getGuru().get(i).getLastName();
-                            String email = response.body().getGuru().get(i).getEmail();
-                            String noTlp = response.body().getGuru().get(i).getNoTlp();
-                            Object sosmed = response.body().getGuru().get(i).getSosmed();
-                            String kemampuan = response.body().getGuru().get(i).getKemampuan();
-                            String deskripsi = response.body().getGuru().get(i).getDeskripsi();
-                            Integer harga = response.body().getGuru().get(i).getHarga();
-                            String createdAt = response.body().getGuru().get(i).getCreatedAt();
-                            String updatedAt = response.body().getGuru().get(i).getUpdatedAt();
+                            Integer teacherID = response.body().getTeacher().get(i).getTeacherID();
+                            String username = response.body().getTeacher().get(i).getUsername();
+                            String firstName = response.body().getTeacher().get(i).getFirstName();
+                            String lastName = response.body().getTeacher().get(i).getLastName();
+                            String email = response.body().getTeacher().get(i).getEmail();
+                            String noTlp = response.body().getTeacher().get(i).getNoTlp();
+                            String lineAccount = response.body().getTeacher().get(i).getLineAccount();
+                            String noWA = response.body().getTeacher().get(i).getNoWA();
+                            String igAccount = response.body().getTeacher().get(i).getIgAccount();
+                            String otherAccount = response.body().getTeacher().get(i).getOtherAccount();
+                            String deskripsi = response.body().getTeacher().get(i).getDescription();
+                            Integer harga = response.body().getTeacher().get(i).getPrice();
+                            String createdAt = response.body().getTeacher().get(i).getCreatedAt();
+                            String updatedAt = response.body().getTeacher().get(i).getUpdatedAt();
 
-                            listGuru.add(new Guru(username, firstName, lastName, email, noTlp,
-                                    sosmed, kemampuan, deskripsi, harga, createdAt, updatedAt));
+                            listTeacher.add(new Teacher(teacherID, username, firstName, lastName, email, noTlp,
+                                    lineAccount, noWA, igAccount, otherAccount, deskripsi, harga, createdAt, updatedAt));
                         }
-                        //listGuru = response.body().getGuru();
+                        //listTeacher = response.body().getTeacher();
 
-                        if (listGuru.isEmpty()) {
+                        if (listTeacher.isEmpty()) {
                             tvNoData.setVisibility(View.VISIBLE);
                         } else {
                             tvNoData.setVisibility(View.GONE);
@@ -115,7 +118,7 @@ public class GuruFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                 }
 
                 @Override
-                public void onFailure(@NonNull Call<GuruResponse> call, @NonNull Throwable t) {
+                public void onFailure(@NonNull Call<TeacherResponse> call, @NonNull Throwable t) {
                     swipeRefreshLayout.setRefreshing(false);
                     Log.d("error", t.getMessage());
                 }
