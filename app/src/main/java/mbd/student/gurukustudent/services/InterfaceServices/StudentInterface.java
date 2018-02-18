@@ -17,4 +17,7 @@ public interface StudentInterface {
 
     @POST("/student/register")
     Call<String> APIRegister(@Body JSONObject param);
+
+    @POST("/student/book")
+    Call<String> APIBookTeacher(@Body JSONObject param);
 }

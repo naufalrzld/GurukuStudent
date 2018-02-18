@@ -31,7 +31,7 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class GuruFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class TeacherFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     @BindView(R.id.swipeRefreshLayout)
     SwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.rvGuru)
@@ -42,7 +42,7 @@ public class GuruFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     private List<Teacher> listTeacher = new ArrayList<>();
     private TeacherAdapter adapter;
 
-    public GuruFragment() {
+    public TeacherFragment() {
         // Required empty public constructor
     }
 
@@ -77,7 +77,7 @@ public class GuruFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
         adapter.notifyDataSetChanged();
 
-        Call<TeacherResponse> call = RetrofitServices.sendGuruRequest().APIGetAllGuru();
+        Call<TeacherResponse> call = RetrofitServices.sendTeacherRequest().APIGetAllGuru();
         if (call != null) {
             call.enqueue(new Callback<TeacherResponse>() {
                 @Override

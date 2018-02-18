@@ -180,7 +180,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void register(JSONObject param) {
         registerLoading.show();
-        Call<String> call = RetrofitServices.sendMemberRequest().APIRegister(param);
+        Call<String> call = RetrofitServices.sendStudentRequest().APIRegister(param);
         if (call != null) {
             call.enqueue(new Callback<String>() {
                 @Override

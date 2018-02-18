@@ -123,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void login(JSONObject param) {
         loginLoading.show();
-        Call<LoginResponse> call = RetrofitServices.sendMemberRequest().APILogin(param);
+        Call<LoginResponse> call = RetrofitServices.sendStudentRequest().APILogin(param);
         if (call != null) {
             call.enqueue(new Callback<LoginResponse>() {
                 @Override

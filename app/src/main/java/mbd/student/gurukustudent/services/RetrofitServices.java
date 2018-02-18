@@ -8,11 +8,11 @@ import mbd.student.gurukustudent.services.InterfaceServices.StudentInterface;
  */
 
 public class RetrofitServices {
-    public static StudentInterface sendMemberRequest() {
+    public static StudentInterface sendStudentRequest() {
         return RetrofitBaseServices.getApiClient().create(StudentInterface.class);
     }
 
-    public static TeacherInterface sendGuruRequest() {
+    public static TeacherInterface sendTeacherRequest() {
         return RetrofitBaseServices.getApiClient().create(TeacherInterface.class);
     }
 }

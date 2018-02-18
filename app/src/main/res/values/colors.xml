@@ -9,6 +9,7 @@
     <color name="colorGreen">#12ba4d</color>
     <color name="colorGreenDark">#0d913b</color>
     <color name="colorGrey">#e0e0e0</color>
+    <color name="colorGreyDark">#aaaaaa</color>
     <color name="colorPurple">#ff8800</color>
     <color name="colorPurpleDark">#e58110</color>
 </resources>

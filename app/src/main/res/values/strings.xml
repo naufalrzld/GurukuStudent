@@ -17,8 +17,8 @@
     <string name="hint_cPassword">Konfirmasi Password</string>
 
     <!--menu_nav_bottom-->
-    <string name="title_home">Beranda</string>
     <string name="title_guru">Guru</string>
+    <string name="title_history">Riwayat</string>
     <string name="title_akun">Akun</string>
 
     <!--AccountFragment-->
@@ -27,7 +27,7 @@
     <string name="tv_about">Tentang</string>
     <string name="tv_logout">Keluar</string>
 
-    <!--GuruFragment-->
+    TeacherFragmentment-->
     <string name="noData">Guru Tidak Tersedia</string>
 
     <!--GuruItem-->
@@ -45,11 +45,13 @@
     <string name="rb_title_two_h">2 Jam</string>
     <string name="rb_title_three_h">3 Jam</string>
     <string name="title_payment_method">Pilih metode pembayaran</string>
+    <string name="txt_not_confirm_1">Sebelum anda melakukan pembayaran, silahkan klik tombol \"Pesan Sekarang\" untuk melakukan pemesanan.</string>
     <string name="rb_title_wallet">Wallet</string>
     <string name="rb_title_cash">Tunai</string>
     <string name="txt_keterangan_wallet">Pastikan saldo yang anda miliki cukup untuk melakukan transaksi ini.</string>
     <string name="txt_keterangan_cash">Silahkan melakukan pembayaran secara cash kepada Guru yang bersangkutan dengan jumlah yang telah ditetapkan.</string>
     <string name="txt_attention">PERHATIAN: Apabila anda melakukan hal - hal yang dapat merugikan pihak manapun, maka akun anda akan dinonaktifkan secara permanen</string>
     <string name="txt_saldo_wallet">Saldo Wallet :</string>
-    <string name="txt_btn_next">Lanjutkan</string>
+    <string name="txt_btn_book_now">Pesan Sekarang</string>
+    <string name="txt_btn_pay">Bayar</string>
 </resources>

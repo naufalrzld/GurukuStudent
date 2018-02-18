@@ -3,19 +3,17 @@ package mbd.student.gurukustudent.activity;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import mbd.student.gurukustudent.R;
 import mbd.student.gurukustudent.fragment.AccountFragment;
-import mbd.student.gurukustudent.fragment.GuruFragment;
+import mbd.student.gurukustudent.fragment.TeacherFragment;
 import mbd.student.gurukustudent.fragment.HomeFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -44,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             Fragment fragment;
             Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.container);
             switch (item.getItemId()) {
-                case R.id.nav_home :
+                case R.id.nav_history:
                     if (!(currentFragment instanceof HomeFragment)) {
                         fragment = new HomeFragment();
                         loadFragment(fragment);
@@ -52,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.nav_guru :
-                    if (!(currentFragment instanceof GuruFragment)) {
-                        fragment = new GuruFragment();
+                    if (!(currentFragment instanceof TeacherFragment)) {
+                        fragment = new TeacherFragment();
                         loadFragment(fragment);
                         return true;
                     }
