@@ -25,5 +25,4 @@
         app:itemBackground="@color/colorWhite"
         app:menu="@menu/nav_bottom" />
 
-
 </LinearLayout>

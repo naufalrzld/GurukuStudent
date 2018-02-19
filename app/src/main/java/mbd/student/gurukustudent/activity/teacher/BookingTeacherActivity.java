@@ -19,24 +19,18 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import mbd.student.gurukustudent.R;
-import mbd.student.gurukustudent.activity.RegisterActivity;
 import mbd.student.gurukustudent.model.APIErrorModel;
-import mbd.student.gurukustudent.model.student.Booking;
-import mbd.student.gurukustudent.model.student.BookingResponse;
 import mbd.student.gurukustudent.model.student.Student;
 import mbd.student.gurukustudent.model.teacher.Teacher;
 import mbd.student.gurukustudent.services.RetrofitServices;
@@ -94,7 +88,6 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
     private ProgressDialog bookLoading;
     private SharedPreferencesUtils sharedPreferencesUtils;
 
-    private List<Booking> listBooking = new ArrayList<>();
     private int studentID, teacherID;
     private int duration = 0;
     private int bookID = 0;
@@ -201,25 +194,19 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
 
     private void bookTeacher(JSONObject param) {
         bookLoading.show();
-        Call<BookingResponse> call = RetrofitServices.sendStudentRequest().APIBookTeacher(param);
+        Call<String> call = RetrofitServices.sendStudentRequest().APIBookTeacher(param);
         if (call != null) {
-            call.enqueue(new Callback<BookingResponse>() {
+            call.enqueue(new Callback<String>() {
                 @Override
-                public void onResponse(@NonNull Call<BookingResponse> call, @NonNull Response<BookingResponse> response) {
+                public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                     bookLoading.dismiss();
                     if (response.isSuccessful()) {
                         try {
-                            Booking booking = response.body().getBooking();
-                            bookID = booking.getBookID();
+                            JSONObject result = new JSONObject(response.body());
 
-                            /*if (sharedPreferencesUtils.checkIfDataExists("bookingList")) {
-                                JSONArray arrayToken = new JSONArray()
-                            } else {
-                                listBooking.add(booking);
-                                sharedPreferencesUtils.storeData("bookingList", new Gson().toJsonTree(listBooking, new TypeToken<List<Booking>>() {
-                                }.getType()).getAsJsonArray().toString());
-                            }*/
-                            tvConfirm.setText(response.body().getMessage());
+                            bookID = result.getInt("bookID");
+
+                            tvConfirm.setText(result.getString("message"));
 
                             rbOneHour.setEnabled(false);
                             rbTwoHour.setEnabled(false);
@@ -235,7 +222,7 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
                 }
 
                 @Override
-                public void onFailure(@NonNull Call<BookingResponse> call, @NonNull Throwable t) {
+                public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
                     bookLoading.dismiss();
                     Log.e("error", t.getMessage());
                 }

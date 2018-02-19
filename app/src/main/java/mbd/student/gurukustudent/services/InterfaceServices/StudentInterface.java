@@ -2,7 +2,7 @@ package mbd.student.gurukustudent.services.InterfaceServices;
 
 import org.json.JSONObject;
 
-import mbd.student.gurukustudent.model.student.BookingResponse;
+import mbd.student.gurukustudent.model.history.HistoryResponse;
 import mbd.student.gurukustudent.model.student.LoginResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -22,8 +22,11 @@ public interface StudentInterface {
     Call<String> APIRegister(@Body JSONObject param);
 
     @POST("/student/book")
-    Call<BookingResponse> APIBookTeacher(@Body JSONObject param);
+    Call<String> APIBookTeacher(@Body JSONObject param);
 
     @GET("/student/getBookingStatus/{bookID}")
     Call<String> APIGetBookingStatus(@Path("bookID") int bookID);
+
+    @GET("/student/getBookingHistory/{studentID}")
+    Call<HistoryResponse> APIGetBookingHistory(@Path("studentID") int studentID);
 }

@@ -27,8 +27,11 @@
     <string name="tv_about">Tentang</string>
     <string name="tv_logout">Keluar</string>
 
-    TeacherFragmentment-->
+    <!--TeacherFragmentment-->
     <string name="noData">Guru Tidak Tersedia</string>
+
+    <!--HistoryFragment-->
+    <string name="noHistory">Tidak ada riwayat</string>
 
     <!--GuruItem-->
     <string name="tv_per_jam">per jam</string>

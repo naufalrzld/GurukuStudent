@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
 import mbd.student.gurukustudent.R;
 import mbd.student.gurukustudent.fragment.AccountFragment;
 import mbd.student.gurukustudent.fragment.TeacherFragment;
-import mbd.student.gurukustudent.fragment.HomeFragment;
+import mbd.student.gurukustudent.fragment.HistoryFragment;
 
 public class MainActivity extends AppCompatActivity {
     @BindView(R.id.toolbar)
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavView.setOnNavigationItemSelectedListener(mOnNavItemSelectedListener);
 
-        loadFragment(new HomeFragment());
+        loadFragment(new TeacherFragment());
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavItemSelectedListener
@@ -43,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
             Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.container);
             switch (item.getItemId()) {
                 case R.id.nav_history:
-                    if (!(currentFragment instanceof HomeFragment)) {
-                        fragment = new HomeFragment();
+                    if (!(currentFragment instanceof HistoryFragment)) {
+                        fragment = new HistoryFragment();
                         loadFragment(fragment);
                         return true;
                     }

@@ -70,6 +70,12 @@ public class Teacher {
         this.updatedAt = updatedAt;
     }
 
+    public Teacher(Integer teacherID, String firstName, String lastName) {
+        this.teacherID = teacherID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     public Integer getTeacherID() {
         return teacherID;
     }
