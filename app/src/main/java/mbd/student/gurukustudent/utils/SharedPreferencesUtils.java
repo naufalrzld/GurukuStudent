@@ -18,9 +18,15 @@ public class SharedPreferencesUtils {
     }
 
     public void storeData(String key, Object value) {
-        android.content.SharedPreferences.Editor editor = sharedPreferences.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         String json = gson.toJson(value);
         editor.putString(key, json);
+        editor.apply();
+    }
+
+    public void storeData(String key, String value) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(key, value);
         editor.apply();
     }
 
