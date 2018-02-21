@@ -1,6 +1,8 @@
 package mbd.student.gurukustudent.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,45 +12,48 @@ import android.widget.TextView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
+import com.google.gson.Gson;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import mbd.student.gurukustudent.R;
-import mbd.student.gurukustudent.model.history.History;
+import mbd.student.gurukustudent.activity.teacher.BookingTeacherActivity;
+import mbd.student.gurukustudent.activity.teacher.DetailTeacherActivity;
 import mbd.student.gurukustudent.model.teacher.Teacher;
+import mbd.student.gurukustudent.model.transaction.Data;
 
 /**
- * Created by Naufal on 19/02/2018.
+ * Created by Naufal on 21/02/2018.
  */
 
-public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
+public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.ViewHolder> {
     private Context context;
-    private List<History> historyList;
+    private List<Data> dataList;
 
     private ColorGenerator mColorGenerator = ColorGenerator.DEFAULT;
     private TextDrawable mDrawableBuilder;
 
-    public HistoryAdapter(Context context, List<History> historyList) {
+    public TransactionAdapter(Context context, List<Data> dataList) {
         this.context = context;
-        this.historyList = historyList;
+        this.dataList = dataList;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_history, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_transaction, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        History history = historyList.get(position);
-        Teacher teacher = history.getTeacher();
+        final Data data = dataList.get(position);
+        Teacher teacher = data.getTeacher();
 
         String namaGuru = teacher.getFirstName() + " " + teacher.getLastName();
         String statusMsg = "";
-        int status = history.getStatus();
+        int status = data.getStatus();
 
         setProfileImage(holder.profileImage, namaGuru);
 
@@ -62,14 +67,26 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
 
         holder.tvNamaGuru.setText(namaGuru);
         holder.tvSatus.setText(statusMsg);
+        holder.cvItemGuru.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String bookData = new Gson().toJson(data);
+                Intent i = new Intent(context, BookingTeacherActivity.class);
+                i.putExtra("from", "Trx");
+                i.putExtra("bookData", bookData);
+                context.startActivity(i);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return historyList.size();
+        return dataList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.cvItemGuru)
+        CardView cvItemGuru;
         @BindView(R.id.profile_image)
         ImageView profileImage;
         @BindView(R.id.tvNamaGuru)

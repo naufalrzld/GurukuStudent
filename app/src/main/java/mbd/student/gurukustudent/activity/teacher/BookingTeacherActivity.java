@@ -33,6 +33,8 @@ import mbd.student.gurukustudent.R;
 import mbd.student.gurukustudent.model.APIErrorModel;
 import mbd.student.gurukustudent.model.student.Student;
 import mbd.student.gurukustudent.model.teacher.Teacher;
+import mbd.student.gurukustudent.model.transaction.Data;
+import mbd.student.gurukustudent.model.transaction.Transaction;
 import mbd.student.gurukustudent.services.RetrofitServices;
 import mbd.student.gurukustudent.utils.APIErrorUtils;
 import mbd.student.gurukustudent.utils.SharedPreferencesUtils;
@@ -77,8 +79,8 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
     @BindView(R.id.lytCash)
     LinearLayout lytCash;
 
-    @BindView(R.id.tvSaldo)
-    TextView tvSaldo;
+    /*@BindView(R.id.tvSaldo)
+    TextView tvSaldo;*/
     @BindView(R.id.btnBookNow)
     Button btnBookNow;
     @BindView(R.id.btnPay)
@@ -91,6 +93,9 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
     private int studentID, teacherID;
     private int duration = 0;
     private int bookID = 0;
+    private int status, statusTrx;
+    private int transactionID;
+    private int total_price;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,26 +127,70 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
         final NumberFormat numberFormatCurrency = NumberFormat.getCurrencyInstance(localeID);
         numberFormatCurrency.setMaximumFractionDigits(0);
 
-        Teacher teacher = new Gson().fromJson(dataIntent.getStringExtra("dataTeacher"), Teacher.class);
+        String from = dataIntent.getStringExtra("from");
+        Data data;
+        Teacher teacher = null;
+        Transaction transaction;
+
+        if (from.equals("DetailTeacher")) {
+            teacher = new Gson().fromJson(dataIntent.getStringExtra("dataTeacher"), Teacher.class);
+            total_price = teacher.getPrice();
+        } else if (from.equals("Trx")) {
+            data = new Gson().fromJson(dataIntent.getStringExtra("bookData"), Data.class);
+            teacher = data.getTeacher();
+            transaction = data.getTransaction();
+            bookID = data.getBookID();
+            status = data.getStatus();
+            duration = data.getDuration();
+            transactionID = transaction.getTransactioID();
+            statusTrx = transaction.getStatus();
+            total_price = transaction.getTotalPrice();
+
+            switch (duration) {
+                case 1 :
+                    rbOneHour.setChecked(true);
+                    break;
+                case 2 :
+                    rbTwoHour.setChecked(true);
+                    break;
+                case 3 :
+                    rbThreeHour.setChecked(true);
+            }
+
+            rbOneHour.setEnabled(false);
+            rbTwoHour.setEnabled(false);
+            rbThreeHour.setEnabled(false);
+            lytConfirmed.setVisibility(View.VISIBLE);
+            lytNotConfirm.setVisibility(View.GONE);
+            btnBookNow.setVisibility(View.GONE);
+            btnPay.setVisibility(View.VISIBLE);
+            btnPay.setEnabled(true);
+        }
+
         teacherID = teacher.getTeacherID();
         String nama = teacher.getFirstName() + " " + teacher.getLastName();
-        final int price = teacher.getPrice();
 
         tvNama.setText(nama);
-        tvPrice.setText(numberFormatCurrency.format(price));
+        tvPrice.setText(numberFormatCurrency.format(total_price));
 
         rgDuration.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int id) {
                 if (id == R.id.rbOneHour) {
-                    tvPrice.setText(numberFormatCurrency.format(price));
+                    tvPrice.setText(numberFormatCurrency.format(total_price));
                 } else if (id == R.id.rbTwoHour) {
-                    tvPrice.setText(numberFormatCurrency.format(price * 2));
+                    tvPrice.setText(numberFormatCurrency.format(total_price * 2));
                 } else if (id == R.id.rbThreeHour) {
-                    tvPrice.setText(numberFormatCurrency.format(price * 3));
+                    tvPrice.setText(numberFormatCurrency.format(total_price * 3));
                 }
             }
         });
+
+        if (rbWallet.isChecked()) {
+            btnPay.setEnabled(false);
+        } else {
+            btnPay.setEnabled(true);
+        }
 
         rgPaymentMethod.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -149,14 +198,16 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
                 if (id == R.id.rbWallet) {
                     lytWallet.setVisibility(View.VISIBLE);
                     lytCash.setVisibility(View.GONE);
+                    btnPay.setEnabled(false);
                 } else if (id == R.id.rbCash) {
                     lytWallet.setVisibility(View.GONE);
                     lytCash.setVisibility(View.VISIBLE);
+                    btnPay.setEnabled(true);
                 }
             }
         });
 
-        tvSaldo.setText(numberFormatCurrency.format(50000));
+        //tvSaldo.setText(numberFormatCurrency.format(50000));
 
         btnBookNow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,6 +230,13 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+            }
+        });
+
+        btnPay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
     }

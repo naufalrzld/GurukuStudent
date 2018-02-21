@@ -4,6 +4,7 @@ import org.json.JSONObject;
 
 import mbd.student.gurukustudent.model.history.HistoryResponse;
 import mbd.student.gurukustudent.model.student.LoginResponse;
+import mbd.student.gurukustudent.model.transaction.TransactionResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -29,4 +30,7 @@ public interface StudentInterface {
 
     @GET("/student/getBookingHistory/{studentID}")
     Call<HistoryResponse> APIGetBookingHistory(@Path("studentID") int studentID);
+
+    @GET("/student/transaction/{studentID}")
+    Call<TransactionResponse> APIGetTransaction(@Path("studentID") int studentID);
 }

@@ -213,6 +213,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="Coming Soon"
+                            android:textSize="24sp"
+                            android:layout_gravity="center_horizontal"
+                            android:padding="20dp"/>
+
+                        <!--<TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:text="@string/txt_keterangan_wallet" />
 
                         <View
@@ -237,7 +245,7 @@
                             android:textColor="@color/colorPrimary"
                             android:textStyle="bold"
                             android:layout_gravity="center"
-                            android:layout_marginTop="5dp"/>
+                            android:layout_marginTop="5dp"/>-->
 
                     </LinearLayout>
 

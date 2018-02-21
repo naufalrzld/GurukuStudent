@@ -44,7 +44,8 @@
                     android:text="@string/tv_saldo"
                     android:textSize="16sp"
                     android:textColor="@color/colorWhite"
-                    android:paddingTop="5dp"/>
+                    android:paddingTop="5dp"
+                    android:visibility="gone"/>
 
             </LinearLayout>
 

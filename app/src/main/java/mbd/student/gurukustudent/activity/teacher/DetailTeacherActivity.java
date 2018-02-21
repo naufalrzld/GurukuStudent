@@ -91,6 +91,7 @@ public class DetailTeacherActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(DetailTeacherActivity.this, BookingTeacherActivity.class);
+                i.putExtra("from", "DetailTeacher");
                 i.putExtra("dataTeacher", dataIntent.getStringExtra("dataTeacher"));
                 startActivity(i);
             }

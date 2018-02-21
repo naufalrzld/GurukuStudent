@@ -15,6 +15,7 @@ import mbd.student.gurukustudent.R;
 import mbd.student.gurukustudent.fragment.AccountFragment;
 import mbd.student.gurukustudent.fragment.TeacherFragment;
 import mbd.student.gurukustudent.fragment.HistoryFragment;
+import mbd.student.gurukustudent.fragment.TransactionFragment;
 
 public class MainActivity extends AppCompatActivity {
     @BindView(R.id.toolbar)
@@ -42,6 +43,20 @@ public class MainActivity extends AppCompatActivity {
             Fragment fragment;
             Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.container);
             switch (item.getItemId()) {
+                case R.id.nav_guru:
+                    if (!(currentFragment instanceof TeacherFragment)) {
+                        fragment = new TeacherFragment();
+                        loadFragment(fragment);
+                        return true;
+                    }
+                    break;
+                case R.id.nav_transaction:
+                    if (!(currentFragment instanceof TransactionFragment)) {
+                        fragment = new TransactionFragment();
+                        loadFragment(fragment);
+                        return true;
+                    }
+                    break;
                 case R.id.nav_history:
                     if (!(currentFragment instanceof HistoryFragment)) {
                         fragment = new HistoryFragment();
@@ -49,14 +64,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
                     break;
-                case R.id.nav_guru :
-                    if (!(currentFragment instanceof TeacherFragment)) {
-                        fragment = new TeacherFragment();
-                        loadFragment(fragment);
-                        return true;
-                    }
-                    break;
-                case R.id.nav_akun :
+                case R.id.nav_akun:
                     if (!(currentFragment instanceof AccountFragment)) {
                         fragment = new AccountFragment();
                         loadFragment(fragment);

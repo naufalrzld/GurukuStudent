@@ -11,4 +11,6 @@ import retrofit2.http.GET;
 public interface TeacherInterface {
     @GET("/teacher/all")
     Call<TeacherResponse> APIGetAllGuru();
+
+
 }

@@ -76,6 +76,23 @@ public class Teacher {
         this.lastName = lastName;
     }
 
+    public Teacher(Integer teacherID, String username, String firstName, String lastName,
+                   String email, String noTlp, String lineAccount, String noWA, String igAccount,
+                   String otherAccount, String description, Integer price) {
+        this.teacherID = teacherID;
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.noTlp = noTlp;
+        this.lineAccount = lineAccount;
+        this.noWA = noWA;
+        this.igAccount = igAccount;
+        this.otherAccount = otherAccount;
+        this.description = description;
+        this.price = price;
+    }
+
     public Integer getTeacherID() {
         return teacherID;
     }
