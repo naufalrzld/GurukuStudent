@@ -33,4 +33,7 @@ public interface StudentInterface {
 
     @GET("/student/transaction/{studentID}")
     Call<TransactionResponse> APIGetTransaction(@Path("studentID") int studentID);
+
+    @POST("/student/payment/cash")
+    Call<String> APIPaymentCash(@Body JSONObject param);
 }

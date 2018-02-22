@@ -64,6 +64,8 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
     LinearLayout lytNotConfirm;
     @BindView(R.id.lytConfirmed)
     LinearLayout lytConfirmed;
+    @BindView(R.id.lytPaymentSuccess)
+    LinearLayout lytPaymentSuccess;
     @BindView(R.id.tvConfirm)
     TextView tvConfirm;
 
@@ -78,6 +80,15 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
     LinearLayout lytWallet;
     @BindView(R.id.lytCash)
     LinearLayout lytCash;
+
+    @BindView(R.id.tvPaymentSuccess)
+    TextView tvPaymentSuccess;
+    @BindView(R.id.tvNoTlp)
+    TextView tvNoTlp;
+    @BindView(R.id.tvNoWa)
+    TextView tvNoWA;
+    @BindView(R.id.tvLineAccount)
+    TextView tvLineAccount;
 
     /*@BindView(R.id.tvSaldo)
     TextView tvSaldo;*/
@@ -96,6 +107,9 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
     private int status, statusTrx;
     private int transactionID;
     private int total_price;
+    private String noTlp;
+    private String noWA;
+    private String lineAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,10 +149,18 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
         if (from.equals("DetailTeacher")) {
             teacher = new Gson().fromJson(dataIntent.getStringExtra("dataTeacher"), Teacher.class);
             total_price = teacher.getPrice();
+            noTlp = teacher.getNoTlp();
+            noWA = teacher.getNoWA();
+            lineAccount = teacher.getLineAccount();
+
+            swipeRefreshLayout.setEnabled(false);
         } else if (from.equals("Trx")) {
             data = new Gson().fromJson(dataIntent.getStringExtra("bookData"), Data.class);
             teacher = data.getTeacher();
             transaction = data.getTransaction();
+            noTlp = teacher.getNoTlp();
+            noWA = teacher.getNoWA();
+            lineAccount = teacher.getLineAccount();
             bookID = data.getBookID();
             status = data.getStatus();
             duration = data.getDuration();
@@ -157,14 +179,21 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
                     rbThreeHour.setChecked(true);
             }
 
+            lytNotConfirm.setVisibility(View.GONE);
+            btnBookNow.setVisibility(View.GONE);
+
+            if (statusTrx == 1) {
+                btnPay.setVisibility(View.GONE);
+                lytConfirmed.setVisibility(View.GONE);
+                lytPaymentSuccess.setVisibility(View.VISIBLE);
+            } else {
+                btnPay.setVisibility(View.VISIBLE);
+                lytConfirmed.setVisibility(View.VISIBLE);
+            }
+
             rbOneHour.setEnabled(false);
             rbTwoHour.setEnabled(false);
             rbThreeHour.setEnabled(false);
-            lytConfirmed.setVisibility(View.VISIBLE);
-            lytNotConfirm.setVisibility(View.GONE);
-            btnBookNow.setVisibility(View.GONE);
-            btnPay.setVisibility(View.VISIBLE);
-            btnPay.setEnabled(true);
         }
 
         teacherID = teacher.getTeacherID();
@@ -172,6 +201,9 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
 
         tvNama.setText(nama);
         tvPrice.setText(numberFormatCurrency.format(total_price));
+        tvNoTlp.setText(noTlp);
+        tvNoWA.setText(noWA);
+        tvLineAccount.setText(lineAccount);
 
         rgDuration.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -236,7 +268,16 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
         btnPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                JSONObject param = new JSONObject();
+                try {
+                    param.put("transactionID", transactionID);
+                    param.put("status", 1);
+                    param.put("paymentMethod", "CASH");
 
+                    paymentCash(param);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -273,6 +314,7 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
                             btnBookNow.setVisibility(View.GONE);
                             btnPay.setVisibility(View.VISIBLE);
                             btnPay.setEnabled(false);
+                            swipeRefreshLayout.setEnabled(true);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -300,11 +342,23 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
                         try {
                             JSONObject result = new JSONObject(response.body());
                             int status = result.getInt("statusBook");
+                            int statusTrx = result.getInt("statusTransaction");
 
                             if (status == 1) {
                                 lytConfirmed.setVisibility(View.VISIBLE);
                                 lytNotConfirm.setVisibility(View.GONE);
-                                btnPay.setEnabled(true);
+
+                                if (rbWallet.isChecked()) {
+                                    btnPay.setEnabled(false);
+                                } else {
+                                    btnPay.setEnabled(true);
+                                }
+
+                                if (statusTrx == 1) {
+                                    lytPaymentSuccess.setVisibility(View.VISIBLE);
+                                    lytConfirmed.setVisibility(View.GONE);
+                                    btnPay.setVisibility(View.GONE);
+                                }
                             }
 
                         } catch (JSONException e) {
@@ -329,6 +383,38 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
                 @Override
                 public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
                     swipeRefreshLayout.setRefreshing(false);
+                    Log.e("error", t.getMessage());
+                }
+            });
+        }
+    }
+
+    private void paymentCash(JSONObject param) {
+        bookLoading.show();
+        Call<String> call = RetrofitServices.sendStudentRequest().APIPaymentCash(param);
+        if (call != null) {
+            call.enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                    bookLoading.dismiss();
+                    if (response.isSuccessful()) {
+                        try {
+                            JSONObject result = new JSONObject(response.body());
+                            String message = result.getString("message");
+                            tvPaymentSuccess.setText(message);
+
+                            lytPaymentSuccess.setVisibility(View.VISIBLE);
+                            lytConfirmed.setVisibility(View.GONE);
+                            btnPay.setVisibility(View.GONE);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                    bookLoading.dismiss();
                     Log.e("error", t.getMessage());
                 }
             });
