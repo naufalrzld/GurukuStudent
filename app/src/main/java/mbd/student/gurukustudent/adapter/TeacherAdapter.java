@@ -22,6 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import mbd.student.gurukustudent.R;
 import mbd.student.gurukustudent.activity.teacher.DetailTeacherActivity;
+import mbd.student.gurukustudent.model.teacher.Category;
 import mbd.student.gurukustudent.model.teacher.Teacher;
 
 /**
@@ -61,6 +62,17 @@ public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.ViewHold
         setProfileImage(holder.profileImage, nama);
 
         holder.tvNamaGuru.setText(nama);
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (Category c : teacher.getCategories()) {
+            stringBuilder.append(c.getCategoryName());
+            stringBuilder.append(",");
+        }
+
+        String category = stringBuilder.toString();
+
+        holder.tvCategory.setText(category);
         holder.tvHarga.setText(numberFormatCurrency.format(harga));
         holder.cvItemGuru.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,8 +98,8 @@ public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.ViewHold
         ImageView profileImage;
         @BindView(R.id.tvNamaGuru)
         TextView tvNamaGuru;
-        @BindView(R.id.tvKemampuan)
-        TextView tvKemampuan;
+        @BindView(R.id.tvCategory)
+        TextView tvCategory;
         @BindView(R.id.tvHarga)
         TextView tvHarga;
 

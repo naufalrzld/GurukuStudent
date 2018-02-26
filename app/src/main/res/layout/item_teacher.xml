@@ -53,7 +53,7 @@
                     android:textColor="@color/colorBlack"/>
 
                 <TextView
-                    android:id="@+id/tvKemampuan"
+                    android:id="@+id/tvCategory"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="Kalkulus"

@@ -3,6 +3,8 @@ package mbd.student.gurukustudent.model.teacher;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by Naufal on 13/02/2018.
  */
@@ -50,6 +52,10 @@ public class Teacher {
     @SerializedName("updatedAt")
     @Expose
     private String updatedAt;
+
+    @SerializedName("Categories")
+    @Expose
+    private List<Category> categories = null;
 
     public Teacher(Integer teacherID, String username, String firstName, String lastName, String email,
                    String noTlp, String lineAccount, String noWA, String igAccount, String otherAccount,
@@ -203,5 +209,13 @@ public class Teacher {
 
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 }
