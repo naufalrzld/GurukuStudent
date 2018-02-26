@@ -59,7 +59,7 @@ public class Teacher {
 
     public Teacher(Integer teacherID, String username, String firstName, String lastName, String email,
                    String noTlp, String lineAccount, String noWA, String igAccount, String otherAccount,
-                   String description, Integer price, String createdAt, String updatedAt) {
+                   String description, Integer price, List<Category> categories, String createdAt, String updatedAt) {
         this.teacherID = teacherID;
         this.username = username;
         this.firstName = firstName;
@@ -72,6 +72,7 @@ public class Teacher {
         this.otherAccount = otherAccount;
         this.description = description;
         this.price = price;
+        this.categories = categories;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }

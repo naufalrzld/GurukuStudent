@@ -30,6 +30,13 @@
 
     <!--TeacherFragmentment-->
     <string name="noData">Guru Tidak Tersedia</string>
+    <string name="tv_bookDate">Tanggal</string>
+    <string name="tv_bookTime">Jam</string>
+    <string name="tv_location">Lokasi</string>
+    <string name="tv_hint_lokasi">Lokasi pembelajaran</string>
+    <string name="tv_category">Kategori</string>
+    <string name="tv_duration">Durasi</string>
+    <string name="btn_find">Cari</string>
 
     <!--TransactionFragment-->
     <string name="noDataTransaction">Tidak Ada Transaksi</string>

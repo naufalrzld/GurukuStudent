@@ -30,6 +30,7 @@ import mbd.student.gurukustudent.model.teacher.Teacher;
  */
 
 public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.ViewHolder> {
+    private static final String SEPARATOR = ", ";
     private Context context;
     private List<Teacher> listGutu;
 
@@ -50,6 +51,7 @@ public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Teacher teacher = listGutu.get(position);
+        List<Category> categories = teacher.getCategories();
 
         Locale localeID = new Locale("in", "ID");
 
@@ -65,12 +67,13 @@ public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.ViewHold
 
         StringBuilder stringBuilder = new StringBuilder();
 
-        for (Category c : teacher.getCategories()) {
+        for (Category c : categories) {
             stringBuilder.append(c.getCategoryName());
-            stringBuilder.append(",");
+            stringBuilder.append(SEPARATOR);
         }
 
         String category = stringBuilder.toString();
+        category = category.substring(0, category.length() - SEPARATOR.length());
 
         holder.tvCategory.setText(category);
         holder.tvHarga.setText(numberFormatCurrency.format(harga));
