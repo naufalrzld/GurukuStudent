@@ -110,7 +110,7 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
     private String noTlp;
     private String noWA;
     private String lineAccount;
-    private String bookData;
+    private String bookData, date, time, location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,6 +158,9 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
             try {
                 JSONObject jsonBookData = new JSONObject(bookData);
                 duration = jsonBookData.getInt("duration");
+                date = jsonBookData.getString("date");
+                time = jsonBookData.getString("time");
+                location = jsonBookData.getString("location");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -283,6 +286,9 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
                     param.put("teacherID", teacherID);
                     param.put("studentID", studentID);
                     param.put("duration", duration);
+                    param.put("location", location);
+                    param.put("date", date);
+                    param.put("time", time);
 
                     bookTeacher(param);
                 } catch (JSONException e) {
