@@ -110,6 +110,7 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
     private String noTlp;
     private String noWA;
     private String lineAccount;
+    private String bookData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,13 +148,38 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
         Transaction transaction;
 
         if (from.equals("DetailTeacher")) {
+            bookData = dataIntent.getStringExtra("bookData");
             teacher = new Gson().fromJson(dataIntent.getStringExtra("dataTeacher"), Teacher.class);
             total_price = teacher.getPrice();
             noTlp = teacher.getNoTlp();
             noWA = teacher.getNoWA();
             lineAccount = teacher.getLineAccount();
 
+            try {
+                JSONObject jsonBookData = new JSONObject(bookData);
+                duration = jsonBookData.getInt("duration");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
             swipeRefreshLayout.setEnabled(false);
+
+            switch (duration) {
+                case 1 :
+                    rbOneHour.setChecked(true);
+                    break;
+                case 2 :
+                    rbTwoHour.setChecked(true);
+                    break;
+                case 3 :
+                    rbThreeHour.setChecked(true);
+            }
+
+            total_price = total_price * duration;
+
+            rbOneHour.setEnabled(false);
+            rbTwoHour.setEnabled(false);
+            rbThreeHour.setEnabled(false);
         } else if (from.equals("Trx")) {
             data = new Gson().fromJson(dataIntent.getStringExtra("bookData"), Data.class);
             teacher = data.getTeacher();

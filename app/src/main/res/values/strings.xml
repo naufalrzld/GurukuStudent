@@ -69,6 +69,6 @@
     <string name="txt_btn_book_now">Pesan Sekarang</string>
     <string name="txt_btn_pay">Bayar</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--ListTeacherActivity-->
+    <string name="activity_title_list_teacher">Daftar Guru</string>
 </resources>

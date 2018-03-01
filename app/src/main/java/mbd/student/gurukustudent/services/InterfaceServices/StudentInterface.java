@@ -4,6 +4,7 @@ import org.json.JSONObject;
 
 import mbd.student.gurukustudent.model.history.HistoryResponse;
 import mbd.student.gurukustudent.model.student.LoginResponse;
+import mbd.student.gurukustudent.model.teacher.TeacherResponse;
 import mbd.student.gurukustudent.model.transaction.TransactionResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -21,6 +22,9 @@ public interface StudentInterface {
 
     @POST("/student/register")
     Call<String> APIRegister(@Body JSONObject param);
+
+    @GET("/student/findTeacher/{category}")
+    Call<TeacherResponse> APIGetAllGuru(@Path("category") String category);
 
     @POST("/student/book")
     Call<String> APIBookTeacher(@Body JSONObject param);

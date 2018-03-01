@@ -1,5 +1,6 @@
 package mbd.student.gurukustudent.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -33,6 +34,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import mbd.student.gurukustudent.R;
+import mbd.student.gurukustudent.activity.teacher.ListTeacherActivity;
 import mbd.student.gurukustudent.adapter.TeacherAdapter;
 import mbd.student.gurukustudent.model.teacher.Category;
 import mbd.student.gurukustudent.model.teacher.CategoryResponse;
@@ -69,13 +71,6 @@ public class TeacherFragment extends Fragment implements TimePickerDialog.OnTime
     RadioButton rbThreeHour;
     @BindView(R.id.btnFind)
     Button btnFind;
-
-    /*@BindView(R.id.swipeRefreshLayout)
-    SwipeRefreshLayout swipeRefreshLayout;
-    @BindView(R.id.rvGuru)
-    RecyclerView rvGuru;
-    @BindView(R.id.tvNoData)
-    TextView tvNoData;*/
 
     private List<Category> categories = new ArrayList<>();
     private String mDate, mTime, categoryName;
@@ -174,6 +169,10 @@ public class TeacherFragment extends Fragment implements TimePickerDialog.OnTime
                         data.put("location", location);
                         data.put("category", categoryName);
                         data.put("duration", duration);
+
+                        Intent i = new Intent(getContext(), ListTeacherActivity.class);
+                        i.putExtra("bookData", data.toString());
+                        getContext().startActivity(i);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -182,13 +181,6 @@ public class TeacherFragment extends Fragment implements TimePickerDialog.OnTime
         });
 
         getCategory();
-
-        /*swipeRefreshLayout.setOnRefreshListener(this);
-
-        rvGuru.setHasFixedSize(true);
-        rvGuru.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new TeacherAdapter(getContext(), listTeacher);
-        rvGuru.setAdapter(adapter);*/
 
         return v;
     }
@@ -259,66 +251,4 @@ public class TeacherFragment extends Fragment implements TimePickerDialog.OnTime
 
         tvTimePrivate.setText(mTime);
     }
-
-    /*private void getAllDataGuru() {
-        listTeacher.clear();
-
-        swipeRefreshLayout.setRefreshing(true);
-
-        adapter.notifyDataSetChanged();
-
-        Call<TeacherResponse> call = RetrofitServices.sendTeacherRequest().APIGetAllGuru();
-        if (call != null) {
-            call.enqueue(new Callback<TeacherResponse>() {
-                @Override
-                public void onResponse(@NonNull Call<TeacherResponse> call, @NonNull Response<TeacherResponse> response) {
-                    swipeRefreshLayout.setRefreshing(false);
-                    if (response.isSuccessful()) {
-                        int count = response.body().getTeacher().size();
-
-                        for (int i=0; i<count; i++) {
-                            Integer teacherID = response.body().getTeacher().get(i).getTeacherID();
-                            String username = response.body().getTeacher().get(i).getUsername();
-                            String firstName = response.body().getTeacher().get(i).getFirstName();
-                            String lastName = response.body().getTeacher().get(i).getLastName();
-                            String email = response.body().getTeacher().get(i).getEmail();
-                            String noTlp = response.body().getTeacher().get(i).getNoTlp();
-                            String lineAccount = response.body().getTeacher().get(i).getLineAccount();
-                            String noWA = response.body().getTeacher().get(i).getNoWA();
-                            String igAccount = response.body().getTeacher().get(i).getIgAccount();
-                            String otherAccount = response.body().getTeacher().get(i).getOtherAccount();
-                            String deskripsi = response.body().getTeacher().get(i).getDescription();
-                            Integer harga = response.body().getTeacher().get(i).getPrice();
-                            String createdAt = response.body().getTeacher().get(i).getCreatedAt();
-                            String updatedAt = response.body().getTeacher().get(i).getUpdatedAt();
-                            List<Category> categories = response.body().getTeacher().get(i).getCategories();
-
-                            listTeacher.add(new Teacher(teacherID, username, firstName, lastName, email, noTlp,
-                                    lineAccount, noWA, igAccount, otherAccount, deskripsi, harga, categories, createdAt, updatedAt));
-                        }
-                        //listTeacher = response.body().getTeacher();
-
-                        if (listTeacher.isEmpty()) {
-                            tvNoData.setVisibility(View.VISIBLE);
-                        } else {
-                            tvNoData.setVisibility(View.GONE);
-                        }
-
-                        adapter.notifyDataSetChanged();
-                    }
-                }
-
-                @Override
-                public void onFailure(@NonNull Call<TeacherResponse> call, @NonNull Throwable t) {
-                    swipeRefreshLayout.setRefreshing(false);
-                    Log.d("error", t.getMessage());
-                }
-            });
-        }
-    }*/
-
-    /*@Override
-    public void onRefresh() {
-        //getAllDataGuru();
-    }*/
 }

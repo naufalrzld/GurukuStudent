@@ -22,7 +22,8 @@
         <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.teacher.DetailTeacherActivity" />
-        <activity android:name=".activity.teacher.BookingTeacherActivity"></activity>
+        <activity android:name=".activity.teacher.BookingTeacherActivity" />
+        <activity android:name=".activity.teacher.ListTeacherActivity"></activity>
     </application>
 
 </manifest>

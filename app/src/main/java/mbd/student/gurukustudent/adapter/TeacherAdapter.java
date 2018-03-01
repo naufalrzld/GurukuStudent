@@ -33,13 +33,15 @@ public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.ViewHold
     private static final String SEPARATOR = ", ";
     private Context context;
     private List<Teacher> listGutu;
+    private String bookData;
 
     private ColorGenerator mColorGenerator = ColorGenerator.DEFAULT;
     private TextDrawable mDrawableBuilder;
 
-    public TeacherAdapter(Context context, List<Teacher> listGutu) {
+    public TeacherAdapter(Context context, List<Teacher> listGutu, String bookData) {
         this.context = context;
         this.listGutu = listGutu;
+        this.bookData = bookData;
     }
 
     @Override
@@ -84,6 +86,7 @@ public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.ViewHold
 
                 Intent i = new Intent(context, DetailTeacherActivity.class);
                 i.putExtra("dataTeacher", data);
+                i.putExtra("bookData", bookData);
                 context.startActivity(i);
             }
         });

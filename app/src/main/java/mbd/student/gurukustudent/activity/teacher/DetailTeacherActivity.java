@@ -48,6 +48,7 @@ public class DetailTeacherActivity extends AppCompatActivity {
     private ColorGenerator mColorGenerator = ColorGenerator.DEFAULT;
     private TextDrawable mDrawableBuilder;
 
+    private String bookData;
     private Intent dataIntent;
 
     @Override
@@ -62,6 +63,7 @@ public class DetailTeacherActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
 
         dataIntent = getIntent();
+        bookData = dataIntent.getStringExtra("bookData");
 
         Locale localeID = new Locale("in", "ID");
 
@@ -92,6 +94,7 @@ public class DetailTeacherActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(DetailTeacherActivity.this, BookingTeacherActivity.class);
                 i.putExtra("from", "DetailTeacher");
+                i.putExtra("bookData", bookData);
                 i.putExtra("dataTeacher", dataIntent.getStringExtra("dataTeacher"));
                 startActivity(i);
             }
