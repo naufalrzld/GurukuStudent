@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import com.amulyakhare.textdrawable.util.ColorGenerator;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import mbd.student.gurukustudent.R;
+import mbd.student.gurukustudent.activity.EditProfileActivity;
 import mbd.student.gurukustudent.activity.LoginActivity;
 import mbd.student.gurukustudent.model.student.Student;
 import mbd.student.gurukustudent.utils.SessionManager;
@@ -35,6 +37,12 @@ public class AccountFragment extends Fragment {
     TextView tvNoTlp;
     @BindView(R.id.tvEmail)
     TextView tvEmail;
+    @BindView(R.id.tvNoWa)
+    TextView tvNoWA;
+    @BindView(R.id.tvLineAccount)
+    TextView tvLineAccout;
+    @BindView(R.id.tvEditProfile)
+    TextView tvEditProfile;
     @BindView(R.id.tvLogout)
     TextView tvLogout;
 
@@ -59,29 +67,45 @@ public class AccountFragment extends Fragment {
         session = new SessionManager(getContext());
         sharedPreferencesUtils = new SharedPreferencesUtils(getContext(), "DataMember");
 
+        tvLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logout();
+            }
+        });
+
+        tvEditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(), EditProfileActivity.class);
+                startActivity(i);
+            }
+        });
+
+        return v;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         if (sharedPreferencesUtils.checkIfDataExists("profile")) {
             student = sharedPreferencesUtils.getObjectData("profile", Student.class);
             String nama = student.getFirstName() + " " + student.getLastName();
             String username = student.getUsername();
             String noTlp = student.getNoTlp();
             String email = student.getEmail();
+            String noWA = student.getNoWA();
+            String IDLine = student.getLineAccount();
 
             tvNama.setText(nama);
             tvUsername.setText(username);
             tvNoTlp.setText(noTlp);
             tvEmail.setText(email);
+            tvNoWA.setText(noWA);
+            tvLineAccout.setText(IDLine);
 
             setProfileImage(nama);
-
-            tvLogout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    logout();
-                }
-            });
         }
-
-        return v;
     }
 
     private void setProfileImage(String nama) {

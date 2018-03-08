@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorGrey"
+    tools:context="mbd.student.gurukustudent.activity.EditProfileActivity">
+
+    <include layout="@layout/custom_toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="10dp">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorBlack"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/profile"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorBlack"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorBlack"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/ilFName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/etFName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif"
+                android:inputType="textCapWords"
+                android:hint="@string/hint_fName"
+                tools:targetApi="jelly_bean" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/ilLName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/etLName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif"
+                android:inputType="textCapWords"
+                android:hint="@string/hint_lName"
+                tools:targetApi="jelly_bean" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/ilNoTlp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/etNoTlp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif"
+                android:inputType="number"
+                android:hint="@string/hint_notlp"
+                tools:targetApi="jelly_bean" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorBlack"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/media_sosial"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorBlack"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorBlack"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/ilNoWA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/etNoWA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif"
+                android:inputType="number"
+                android:hint="@string/nomor_whatsapp"
+                tools:targetApi="jelly_bean" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/ilIDLine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/etIDLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif"
+                android:inputType="text"
+                android:hint="@string/id_line"
+                tools:targetApi="jelly_bean" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnSimpan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_simpan"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/btn_click_daftar"
+            android:layout_marginTop="10dp"/>
+
+        <Button
+            android:id="@+id/btnBatal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_batal"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/btn_click_masuk"
+            android:layout_marginTop="10dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

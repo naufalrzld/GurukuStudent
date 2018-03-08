@@ -71,4 +71,13 @@
 
     <!--ListTeacherActivity-->
     <string name="activity_title_list_teacher">Daftar Guru</string>
+    <string name="nomor_whatsapp">Nomor WhatsApp</string>
+    <string name="id_line">ID Line</string>
+    <string name="ubah_profile">Ubah Profile</string>
+    <string name="profile">Profile</string>
+    <string name="media_sosial">Media Sosial</string>
+    <string name="btn_simpan">Simpan</string>
+    <string name="btn_batal">Batal</string>
+
+    <string name="activity_title_edit_profile">Edit Profile</string>
 </resources>
