@@ -38,10 +38,10 @@ public class DetailTeacherActivity extends AppCompatActivity {
     @BindView(R.id.tvEmail)
     TextView tvEmail;
 
-    @BindView(R.id.tvNoWa)
+    /*@BindView(R.id.tvNoWa)
     TextView tvNoWa;
     @BindView(R.id.tvLineAccount)
-    TextView tvLineAccount;
+    TextView tvLineAccount;*/
     @BindView(R.id.btnBook)
     Button btnBook;
 
@@ -86,8 +86,8 @@ public class DetailTeacherActivity extends AppCompatActivity {
         tvUsername.setText(username);
         tvNoTlp.setText(noTlp);
         tvEmail.setText(email);
-        tvNoWa.setText(noWA);
-        tvLineAccount.setText(lineAccount);
+        /*tvNoWa.setText(noWA);
+        tvLineAccount.setText(lineAccount);*/
 
         btnBook.setOnClickListener(new View.OnClickListener() {
             @Override
