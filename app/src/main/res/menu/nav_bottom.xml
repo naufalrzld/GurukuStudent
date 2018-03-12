@@ -7,9 +7,9 @@
         android:title="@string/title_guru"/>
 
     <item
-        android:id="@+id/nav_transaction"
-        android:icon="@drawable/ic_transaction"
-        android:title="@string/title_transaction"/>
+        android:id="@+id/nav_booking"
+        android:icon="@drawable/ic_book"
+        android:title="@string/title_booking"/>
 
     <item
         android:id="@+id/nav_history"

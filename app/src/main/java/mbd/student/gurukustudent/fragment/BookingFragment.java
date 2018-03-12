@@ -19,9 +19,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import mbd.student.gurukustudent.R;
-import mbd.student.gurukustudent.adapter.HistoryAdapter;
-import mbd.student.gurukustudent.adapter.TransactionAdapter;
-import mbd.student.gurukustudent.model.history.History;
+import mbd.student.gurukustudent.adapter.BookingAdapter;
 import mbd.student.gurukustudent.model.student.Student;
 import mbd.student.gurukustudent.model.teacher.Teacher;
 import mbd.student.gurukustudent.model.transaction.Data;
@@ -36,7 +34,7 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TransactionFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class BookingFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     @BindView(R.id.swipeRefreshLayout)
     SwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.rvTeacher)
@@ -45,12 +43,12 @@ public class TransactionFragment extends Fragment implements SwipeRefreshLayout.
     TextView tvNoData;
 
     private SharedPreferencesUtils sharedPreferencesUtils;
-    private TransactionAdapter adapter;
+    private BookingAdapter adapter;
     private List<Data> listData = new ArrayList<>();
 
     private int studentID = 0;
 
-    public TransactionFragment() {
+    public BookingFragment() {
         // Required empty public constructor
     }
 
@@ -59,7 +57,7 @@ public class TransactionFragment extends Fragment implements SwipeRefreshLayout.
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_transaction, container, false);
+        View v = inflater.inflate(R.layout.fragment_booking, container, false);
         ButterKnife.bind(this, v);
 
         swipeRefreshLayout.setOnRefreshListener(this);
@@ -70,18 +68,13 @@ public class TransactionFragment extends Fragment implements SwipeRefreshLayout.
             studentID = student.getStudentID();
         }
 
-        adapter = new TransactionAdapter(getContext(), listData);
+        adapter = new BookingAdapter(getContext(), listData);
         rvTeacher.setHasFixedSize(true);
         rvTeacher.setLayoutManager(new LinearLayoutManager(getContext()));
         rvTeacher.setAdapter(adapter);
 
-        return v;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
         getTransaction(studentID);
+        return v;
     }
 
     @Override
@@ -110,11 +103,6 @@ public class TransactionFragment extends Fragment implements SwipeRefreshLayout.
                             int status = data.getStatus();
                             int duration = data.getDuration();
 
-                            int trasactionID = transaction.getTransactioID();
-                            int statusTrx = transaction.getStatus();
-                            String paymentMethod = transaction.getPaymentMethod();
-                            int totalPrice = transaction.getTotalPrice();
-
                             int teacherID = teacher.getTeacherID();
                             String username = teacher.getUsername();
                             String fName = teacher.getFirstName();
@@ -128,10 +116,21 @@ public class TransactionFragment extends Fragment implements SwipeRefreshLayout.
                             String desc = teacher.getDescription();
                             int price = teacher.getPrice();
 
-                            listData.add(new Data(bookID, status, duration,
-                                    new Teacher(teacherID, username, fName, lName, email, noTlp,
-                                            lineAccount, noWA, igAccount, otherAccount, desc, price),
-                                    new Transaction(trasactionID, bookID, statusTrx, paymentMethod, totalPrice)));
+                            if (transaction != null) {
+                                int trasactionID = transaction.getTransactioID();
+                                int statusTrx = transaction.getStatus();
+                                String paymentMethod = transaction.getPaymentMethod();
+                                int totalPrice = transaction.getTotalPrice();
+
+                                listData.add(new Data(bookID, status, duration,
+                                        new Teacher(teacherID, username, fName, lName, email, noTlp,
+                                                lineAccount, noWA, igAccount, otherAccount, desc, price),
+                                        new Transaction(trasactionID, bookID, statusTrx, paymentMethod, totalPrice)));
+                            } else {
+                                listData.add(new Data(bookID, status, duration,
+                                        new Teacher(teacherID, username, fName, lName, email, noTlp,
+                                                lineAccount, noWA, igAccount, otherAccount, desc, price)));
+                            }
                         }
 
                         if (listData.isEmpty()) {

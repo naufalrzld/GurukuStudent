@@ -13,9 +13,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import mbd.student.gurukustudent.R;
 import mbd.student.gurukustudent.fragment.AccountFragment;
+import mbd.student.gurukustudent.fragment.BookingFragment;
 import mbd.student.gurukustudent.fragment.TeacherFragment;
 import mbd.student.gurukustudent.fragment.HistoryFragment;
-import mbd.student.gurukustudent.fragment.TransactionFragment;
 
 public class MainActivity extends AppCompatActivity {
     @BindView(R.id.toolbar)
@@ -50,9 +50,9 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
                     break;
-                case R.id.nav_transaction:
-                    if (!(currentFragment instanceof TransactionFragment)) {
-                        fragment = new TransactionFragment();
+                case R.id.nav_booking:
+                    if (!(currentFragment instanceof BookingFragment)) {
+                        fragment = new BookingFragment();
                         loadFragment(fragment);
                         return true;
                     }

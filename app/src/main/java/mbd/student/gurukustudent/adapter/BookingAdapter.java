@@ -20,7 +20,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import mbd.student.gurukustudent.R;
 import mbd.student.gurukustudent.activity.teacher.BookingTeacherActivity;
-import mbd.student.gurukustudent.activity.teacher.DetailTeacherActivity;
 import mbd.student.gurukustudent.model.teacher.Teacher;
 import mbd.student.gurukustudent.model.transaction.Data;
 
@@ -28,14 +27,14 @@ import mbd.student.gurukustudent.model.transaction.Data;
  * Created by Naufal on 21/02/2018.
  */
 
-public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.ViewHolder> {
+public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.ViewHolder> {
     private Context context;
     private List<Data> dataList;
 
     private ColorGenerator mColorGenerator = ColorGenerator.DEFAULT;
     private TextDrawable mDrawableBuilder;
 
-    public TransactionAdapter(Context context, List<Data> dataList) {
+    public BookingAdapter(Context context, List<Data> dataList) {
         this.context = context;
         this.dataList = dataList;
     }
@@ -67,16 +66,18 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
         holder.tvNamaGuru.setText(namaGuru);
         holder.tvSatus.setText(statusMsg);
-        holder.cvItemGuru.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String bookData = new Gson().toJson(data);
-                Intent i = new Intent(context, BookingTeacherActivity.class);
-                i.putExtra("from", "Trx");
-                i.putExtra("bookData", bookData);
-                context.startActivity(i);
-            }
-        });
+        if (data.getTransaction() != null) {
+            holder.cvItemGuru.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String bookData = new Gson().toJson(data);
+                    Intent i = new Intent(context, BookingTeacherActivity.class);
+                    i.putExtra("from", "Trx");
+                    i.putExtra("bookData", bookData);
+                    context.startActivity(i);
+                }
+            });
+        }
     }
 
     @Override

@@ -46,6 +46,13 @@ public class Data {
         this.transaction = transaction;
     }
 
+    public Data(Integer bookID, Integer status, Integer duration, Teacher teacher) {
+        this.bookID = bookID;
+        this.status = status;
+        this.duration = duration;
+        this.teacher = teacher;
+    }
+
     public Integer getBookID() {
         return bookID;
     }

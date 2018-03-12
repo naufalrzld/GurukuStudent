@@ -18,7 +18,7 @@
 
     <!--menu_nav_bottom-->
     <string name="title_guru">Guru</string>
-    <string name="title_transaction">Transaksi</string>
+    <string name="title_booking">Pemesanan</string>
     <string name="title_history">Riwayat</string>
     <string name="title_akun">Akun</string>
 
@@ -38,7 +38,7 @@
     <string name="tv_duration">Durasi</string>
     <string name="btn_find">Cari</string>
 
-    <!--TransactionFragment-->
+    BookingFragmentment-->
     <string name="noDataTransaction">Tidak Ada Transaksi</string>
 
     <!--HistoryFragment-->
