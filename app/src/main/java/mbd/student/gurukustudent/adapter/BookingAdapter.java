@@ -62,6 +62,9 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.ViewHold
         } else if(status == 1) {
             statusMsg = "Telah disetujui";
             holder.iconStatus.setImageResource(R.drawable.ic_accepted);
+        } else if (status == 2) {
+            statusMsg = "Tidak disetujui";
+            holder.iconStatus.setImageResource(R.drawable.ic_rejected);
         }
 
         holder.tvNamaGuru.setText(namaGuru);
