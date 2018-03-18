@@ -49,15 +49,18 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         String namaGuru = teacher.getFirstName() + " " + teacher.getLastName();
         String statusMsg = "";
         int status = history.getStatus();
+        int finish = history.getFinish();
 
         setProfileImage(holder.profileImage, namaGuru);
 
-        if (status == 0) {
-            statusMsg = "Menunggu Konfirmasi";
-            holder.iconStatus.setImageResource(R.drawable.ic_waiting_confirmation);
-        } else if(status == 1) {
-            statusMsg = "Telah disetujui";
-            holder.iconStatus.setImageResource(R.drawable.ic_accepted);
+        if (status == 2) {
+            statusMsg = "Ditolak";
+            holder.iconStatus.setImageResource(R.drawable.ic_rejected);
+        } else {
+            if (finish == 1) {
+                statusMsg = "Selesai";
+                holder.iconStatus.setImageResource(R.drawable.ic_accepted);
+            }
         }
 
         holder.tvNamaGuru.setText(namaGuru);

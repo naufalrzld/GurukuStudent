@@ -32,6 +32,9 @@ public class History {
     @SerializedName("duration")
     @Expose
     private Integer duration;
+    @SerializedName("finish")
+    @Expose
+    private Integer finish;
     @SerializedName("Student")
     @Expose
     private Student student;
@@ -39,9 +42,10 @@ public class History {
     @Expose
     private Teacher teacher;
 
-    public History(int bookID, int status, Teacher teacher) {
+    public History(int bookID, int status, int finish, Teacher teacher) {
         this.bookID = bookID;
         this.status = status;
+        this.finish = finish;
         this.teacher = teacher;
     }
 
@@ -99,6 +103,14 @@ public class History {
 
     public void setDuration(Integer duration) {
         this.duration = duration;
+    }
+
+    public Integer getFinish() {
+        return finish;
+    }
+
+    public void setFinish(Integer finish) {
+        this.finish = finish;
     }
 
     public Student getStudent() {

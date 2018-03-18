@@ -99,10 +99,11 @@ public class HistoryFragment extends Fragment implements SwipeRefreshLayout.OnRe
                             int bookID = history.getBookID();
                             int teacherID = history.getTeacherID();
                             int status = history.getStatus();
+                            int finish = history.getFinish();
                             String fNameGuru = history.getTeacher().getFirstName();
                             String lNameGuru = history.getTeacher().getLastName();
 
-                            historyList.add(new History(bookID, status, new Teacher(teacherID, fNameGuru, lNameGuru)));
+                            historyList.add(new History(bookID, status, finish, new Teacher(teacherID, fNameGuru, lNameGuru)));
                         }
 
                         if (historyList.isEmpty()) {

@@ -91,6 +91,8 @@ public class TeacherFragment extends Fragment implements TimePickerDialog.OnTime
         View v = inflater.inflate(R.layout.fragment_guru, container, false);
         ButterKnife.bind(this, v);
 
+        spnCategory.setText("Memuat . . .");
+
         mCalendar = Calendar.getInstance();
         mHour = mCalendar.get(Calendar.HOUR_OF_DAY);
         mMinute = mCalendar.get(Calendar.MINUTE);
@@ -211,6 +213,7 @@ public class TeacherFragment extends Fragment implements TimePickerDialog.OnTime
                 @Override
                 public void onResponse(@NonNull Call<CategoryResponse> call, @NonNull Response<CategoryResponse> response) {
                     if (response.isSuccessful()) {
+                        spnCategory.setText("");
                         int size = response.body().getData().size();
                         for (int i=0; i<size; i++) {
                             categories.add(response.body().getData().get(i));
