@@ -31,6 +31,21 @@ public class Data {
     @SerializedName("duration")
     @Expose
     private Integer duration;
+    @SerializedName("finish")
+    @Expose
+    private Integer finish;
+    @SerializedName("location")
+    @Expose
+    private String location;
+    @SerializedName("date")
+    @Expose
+    private String date;
+    @SerializedName("time")
+    @Expose
+    private String time;
+    @SerializedName("note")
+    @Expose
+    private String note;
     @SerializedName("Teacher")
     @Expose
     private Teacher teacher;
@@ -38,18 +53,28 @@ public class Data {
     @Expose
     private Transaction transaction;
 
-    public Data(Integer bookID, Integer status, Integer duration, Teacher teacher, Transaction transaction) {
+    public Data(Integer bookID, Integer status, Integer duration, String location, String date,
+                String time, String note, Teacher teacher, Transaction transaction) {
         this.bookID = bookID;
         this.status = status;
         this.duration = duration;
+        this.location = location;
+        this.date = date;
+        this.time = time;
+        this.note = note;
         this.teacher = teacher;
         this.transaction = transaction;
     }
 
-    public Data(Integer bookID, Integer status, Integer duration, Teacher teacher) {
+    public Data(Integer bookID, Integer status, Integer duration, String location, String date,
+                String time, String note, Teacher teacher) {
         this.bookID = bookID;
         this.status = status;
         this.duration = duration;
+        this.location = location;
+        this.date = date;
+        this.time = time;
+        this.note = note;
         this.teacher = teacher;
     }
 
@@ -107,6 +132,46 @@ public class Data {
 
     public void setDuration(Integer duration) {
         this.duration = duration;
+    }
+
+    public Integer getFinish() {
+        return finish;
+    }
+
+    public void setFinish(Integer finish) {
+        this.finish = finish;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public Teacher getTeacher() {

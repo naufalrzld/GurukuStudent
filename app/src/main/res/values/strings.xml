@@ -38,8 +38,8 @@
     <string name="tv_duration">Durasi</string>
     <string name="btn_find">Cari</string>
 
-    BookingFragmentment-->
-    <string name="noDataTransaction">Tidak Ada Transaksi</string>
+    <!--BookingFragmentment-->
+    <string name="noDataTransaction">Tidak ada pemesanan</string>
 
     <!--HistoryFragment-->
     <string name="noHistory">Tidak ada riwayat</string>
@@ -81,4 +81,9 @@
 
     <string name="activity_title_edit_profile">Edit Profile</string>
     <string name="txt_btn_finish">Selesai</string>
+    <string name="hint_note">(Optional)</string>
+    <string name="tv_note">Catatan untuk guru</string>
+    <string name="tv_booking_detail">Rincian pemesanan</string>
+    <string name="tv_date">Tanggal</string>
+    <string name="tv_time">Waktu</string>
 </resources>

@@ -76,6 +76,7 @@ public class TeacherFragment extends Fragment implements TimePickerDialog.OnTime
     private String mDate, mTime, categoryName;
     private Calendar mCalendar;
     private int mHour, mMinute, mDay, mMonth, mYear;
+    private String minute;
 
     private List<Teacher> listTeacher = new ArrayList<>();
     private TeacherAdapter adapter;
@@ -100,8 +101,14 @@ public class TeacherFragment extends Fragment implements TimePickerDialog.OnTime
         mMonth = mCalendar.get(Calendar.MONTH) + 1;
         mDay = mCalendar.get(Calendar.DATE);
 
+        if (mMinute < 10) {
+            minute = "0" + mMinute;
+        } else {
+            minute = String.valueOf(mMinute);
+        }
+
         mDate = mDay + "/" + mMonth + "/" + mYear;
-        mTime = mHour + ":" + mMinute;
+        mTime = mHour + ":" + minute;
 
         tvBookDate.setText(mDate);
         tvTimePrivate.setText(mTime);

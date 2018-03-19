@@ -9,10 +9,12 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -51,6 +53,8 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
     SwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.tvNama)
     TextView tvNama;
+    @BindView(R.id.tvKeahlian)
+    TextView tvKeahlian;
     @BindView(R.id.tvPrice)
     TextView tvPrice;
     @BindView(R.id.rgDuration)
@@ -61,6 +65,18 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
     RadioButton rbTwoHour;
     @BindView(R.id.rbThreeHour)
     RadioButton rbThreeHour;
+
+    @BindView(R.id.tvDate)
+    TextView tvDate;
+    @BindView(R.id.tvTime)
+    TextView tvTime;
+    @BindView(R.id.tvLocation)
+    TextView tvLocation;
+
+    @BindView(R.id.etNote)
+    EditText etNote;
+    @BindView(R.id.tvNote)
+    TextView tvNote;
 
     @BindView(R.id.lytNotConfirm)
     LinearLayout lytNotConfirm;
@@ -114,7 +130,7 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
     private String noTlp;
     private String noWA;
     private String lineAccount;
-    private String bookData, date, time, location;
+    private String bookData, date, time, location, note;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -197,7 +213,11 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
             bookID = data.getBookID();
             status = data.getStatus();
             duration = data.getDuration();
-            transactionID = transaction.getTransactioID();
+            location = data.getLocation();
+            date = data.getDate();
+            time = data.getTime();
+            note = data.getNote();
+            transactionID = transaction.getTransactionID();
             statusTrx = transaction.getStatus();
             total_price = transaction.getTotalPrice();
 
@@ -214,6 +234,9 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
 
             lytNotConfirm.setVisibility(View.GONE);
             btnBookNow.setVisibility(View.GONE);
+            etNote.setVisibility(View.GONE);
+            tvNote.setVisibility(View.VISIBLE);
+            tvNote.setText(note);
 
             if (statusTrx == 1) {
                 btnPay.setVisibility(View.GONE);
@@ -232,8 +255,13 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
 
         teacherID = teacher.getTeacherID();
         String nama = teacher.getFirstName() + " " + teacher.getLastName();
+        String keahlian = teacher.getCategories().get(0).getCategoryName();
 
         tvNama.setText(nama);
+        tvKeahlian.setText(keahlian);
+        tvDate.setText(date);
+        tvTime.setText(time);
+        tvLocation.setText(location);
         tvPrice.setText(numberFormatCurrency.format(total_price));
         tvNoTlp.setText(noTlp);
         tvNoWA.setText(noWA);
@@ -285,6 +313,13 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
                 } else if (rbThreeHour.isChecked()) {
                     duration = 3;
                 }
+
+                note = etNote.getText().toString();
+
+                if (TextUtils.isEmpty(note)) {
+                    note = "-";
+                }
+
                 try {
                     JSONObject param = new JSONObject();
 
@@ -294,6 +329,7 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
                     param.put("location", location);
                     param.put("date", date);
                     param.put("time", time);
+                    param.put("note", note);
 
                     bookTeacher(param);
                 } catch (JSONException e) {
@@ -310,6 +346,23 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
                     param.put("transactionID", transactionID);
                     param.put("status", 1);
                     param.put("paymentMethod", "CASH");
+
+                    paymentCash(param);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        btnFinish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final JSONObject param = new JSONObject();
+                try {
+                    param.put("bookID", bookID);
+                    param.put("studentID", studentID);
+                    param.put("teacherID", teacherID);
+                    param.put("finish", 1);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -332,23 +385,6 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
                             }
                         })
                         .show();
-            }
-        });
-
-        btnFinish.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                JSONObject param = new JSONObject();
-                try {
-                    param.put("bookID", bookID);
-                    param.put("studentID", studentID);
-                    param.put("teacherID", teacherID);
-                    param.put("finish", 1);
-
-                    finish(param);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
             }
         });
     }
@@ -382,6 +418,9 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
                             rbTwoHour.setEnabled(false);
                             rbThreeHour.setEnabled(false);
 
+                            etNote.setVisibility(View.GONE);
+                            tvNote.setVisibility(View.VISIBLE);
+                            tvNote.setText(note);
                             btnBookNow.setVisibility(View.GONE);
                             btnPay.setVisibility(View.VISIBLE);
                             btnPay.setEnabled(false);
@@ -414,6 +453,7 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
                             JSONObject result = new JSONObject(response.body());
                             int status = result.getInt("statusBook");
                             int statusTrx = result.getInt("statusTransaction");
+                            transactionID = result.getInt("transactionID");
 
                             if (status == 1) {
                                 lytConfirmed.setVisibility(View.VISIBLE);

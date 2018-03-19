@@ -31,6 +31,8 @@ public class DetailTeacherActivity extends AppCompatActivity {
     ImageView profileImage;
     @BindView(R.id.tvNama)
     TextView tvNama;
+    @BindView(R.id.tvSkill)
+    TextView tvSkill;
     @BindView(R.id.tvUsername)
     TextView tvUsername;
     @BindView(R.id.tvNoTlp)
@@ -73,6 +75,7 @@ public class DetailTeacherActivity extends AppCompatActivity {
         Teacher teacher = new Gson().fromJson(dataIntent.getStringExtra("dataTeacher"), Teacher.class);
 
         String nama = teacher.getFirstName() + " " + teacher.getLastName();
+        String skill = teacher.getCategories().get(0).getCategoryName();
         String username = teacher.getUsername();
         String noTlp = teacher.getNoTlp();
         String email = teacher.getEmail();
@@ -83,6 +86,7 @@ public class DetailTeacherActivity extends AppCompatActivity {
         setProfileImage(nama);
         tvPrice.setText(numberFormatCurrency.format(price));
         tvNama.setText(nama);
+        tvSkill.setText(skill);
         tvUsername.setText(username);
         tvNoTlp.setText(noTlp);
         tvEmail.setText(email);

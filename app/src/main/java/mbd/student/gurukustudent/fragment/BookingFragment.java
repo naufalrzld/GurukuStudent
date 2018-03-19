@@ -21,6 +21,7 @@ import butterknife.ButterKnife;
 import mbd.student.gurukustudent.R;
 import mbd.student.gurukustudent.adapter.BookingAdapter;
 import mbd.student.gurukustudent.model.student.Student;
+import mbd.student.gurukustudent.model.teacher.Category;
 import mbd.student.gurukustudent.model.teacher.Teacher;
 import mbd.student.gurukustudent.model.transaction.Data;
 import mbd.student.gurukustudent.model.transaction.Transaction;
@@ -102,11 +103,16 @@ public class BookingFragment extends Fragment implements SwipeRefreshLayout.OnRe
                         for (int i=0; i<count; i++) {
                             Data data = response.body().getData().get(i);
                             Teacher teacher = data.getTeacher();
+                            List<Category> categories = teacher.getCategories();
                             Transaction transaction = data.getTransaction();
 
                             int bookID = data.getBookID();
                             int status = data.getStatus();
                             int duration = data.getDuration();
+                            String note = data.getNote();
+                            String location = data.getLocation();
+                            String date = data.getDate();
+                            String time = data.getTime();
 
                             int teacherID = teacher.getTeacherID();
                             String username = teacher.getUsername();
@@ -122,19 +128,19 @@ public class BookingFragment extends Fragment implements SwipeRefreshLayout.OnRe
                             int price = teacher.getPrice();
 
                             if (transaction != null) {
-                                int trasactionID = transaction.getTransactioID();
+                                int trasactionID = transaction.getTransactionID();
                                 int statusTrx = transaction.getStatus();
                                 String paymentMethod = transaction.getPaymentMethod();
                                 int totalPrice = transaction.getTotalPrice();
 
-                                listData.add(new Data(bookID, status, duration,
+                                listData.add(new Data(bookID, status, duration, location, date, time, note,
                                         new Teacher(teacherID, username, fName, lName, email, noTlp,
-                                                lineAccount, noWA, igAccount, otherAccount, desc, price),
+                                                lineAccount, noWA, igAccount, otherAccount, categories, desc, price),
                                         new Transaction(trasactionID, bookID, statusTrx, paymentMethod, totalPrice)));
                             } else {
-                                listData.add(new Data(bookID, status, duration,
+                                listData.add(new Data(bookID, status, duration, location, date, time, note,
                                         new Teacher(teacherID, username, fName, lName, email, noTlp,
-                                                lineAccount, noWA, igAccount, otherAccount, desc, price)));
+                                                lineAccount, noWA, igAccount, otherAccount, categories, desc, price)));
                             }
                         }
 

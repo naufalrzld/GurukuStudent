@@ -32,6 +32,14 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
             android:paddingTop="5dp"/>
 
+        <TextView
+            android:id="@+id/tvSkill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Keahlian"
+            android:textColor="@color/colorWhite"
+            android:layout_marginTop="5dp"/>
+
     </LinearLayout>
 
     <ScrollView

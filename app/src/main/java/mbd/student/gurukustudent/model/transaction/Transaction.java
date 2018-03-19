@@ -8,9 +8,9 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class Transaction {
-    @SerializedName("transactioID")
+    @SerializedName("transactionID")
     @Expose
-    private Integer transactioID;
+    private Integer transactionID;
     @SerializedName("bookID")
     @Expose
     private Integer bookID;
@@ -30,20 +30,20 @@ public class Transaction {
     @Expose
     private String updatedAt;
 
-    public Transaction(Integer transactioID, Integer bookID, Integer status, String paymentMethod, Integer totalPrice) {
-        this.transactioID = transactioID;
+    public Transaction(Integer transactionID, Integer bookID, Integer status, String paymentMethod, Integer totalPrice) {
+        this.transactionID = transactionID;
         this.bookID = bookID;
         this.status = status;
         this.paymentMethod = paymentMethod;
         this.totalPrice = totalPrice;
     }
 
-    public Integer getTransactioID() {
-        return transactioID;
+    public Integer getTransactionID() {
+        return transactionID;
     }
 
-    public void setTransactioID(Integer transactioID) {
-        this.transactioID = transactioID;
+    public void setTransactionID(Integer transactionID) {
+        this.transactionID = transactionID;
     }
 
     public Integer getBookID() {

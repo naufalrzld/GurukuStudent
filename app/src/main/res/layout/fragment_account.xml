@@ -304,37 +304,50 @@
                         android:orientation="vertical"
                         android:padding="15dp">
 
-                        <TextView
+                        <!--<TextView
                             android:id="@+id/tvAbout"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/tv_about"
                             android:textColor="@color/colorBlack"
-                            android:textSize="16sp" />
+                            android:textSize="16sp" />-->
 
-                        <TextView
-                            android:id="@+id/tvEditProfile"
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:id="@+id/lytEditProfile"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/ubah_profile"
-                            android:textSize="16sp"
-                            android:textColor="@color/colorBlack"
-                            android:layout_marginTop="15dp"/>
+                            android:padding="5dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/ubah_profile"
+                                android:textSize="16sp"
+                                android:textColor="@color/colorBlack" />
+
+                        </LinearLayout>
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="2dp"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginBottom="15dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
                             android:background="@color/colorGrey" />
 
-                        <TextView
-                            android:id="@+id/tvLogout"
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:id="@+id/lytLogout"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/tv_logout"
-                            android:textSize="16sp"
-                            android:textColor="@color/colorRed" />
+                            android:padding="5dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/tv_logout"
+                                android:textSize="16sp"
+                                android:textColor="@color/colorRed" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
