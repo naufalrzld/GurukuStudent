@@ -44,4 +44,7 @@ public interface StudentInterface {
 
     @POST("/student/payment/cash")
     Call<String> APIPaymentCash(@Body JSONObject param);
+
+    @POST("/student/finish")
+    Call<String> APIFinish(@Body JSONObject param);
 }

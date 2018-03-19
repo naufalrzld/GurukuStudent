@@ -73,12 +73,17 @@ public class BookingFragment extends Fragment implements SwipeRefreshLayout.OnRe
         rvTeacher.setLayoutManager(new LinearLayoutManager(getContext()));
         rvTeacher.setAdapter(adapter);
 
-        getTransaction(studentID);
         return v;
     }
 
     @Override
     public void onRefresh() {
+        getTransaction(studentID);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         getTransaction(studentID);
     }
 

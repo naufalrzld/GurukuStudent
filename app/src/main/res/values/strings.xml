@@ -80,4 +80,5 @@
     <string name="btn_batal">Batal</string>
 
     <string name="activity_title_edit_profile">Edit Profile</string>
+    <string name="txt_btn_finish">Selesai</string>
 </resources>

@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -30,6 +31,7 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import mbd.student.gurukustudent.R;
+import mbd.student.gurukustudent.activity.LoginActivity;
 import mbd.student.gurukustudent.model.APIErrorModel;
 import mbd.student.gurukustudent.model.student.Student;
 import mbd.student.gurukustudent.model.teacher.Teacher;
@@ -96,6 +98,8 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
     Button btnBookNow;
     @BindView(R.id.btnPay)
     Button btnPay;
+    @BindView(R.id.btnFinish)
+    Button btnFinish;
 
     private Intent dataIntent;
     private ProgressDialog bookLoading;
@@ -215,6 +219,7 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
                 btnPay.setVisibility(View.GONE);
                 lytConfirmed.setVisibility(View.GONE);
                 lytPaymentSuccess.setVisibility(View.VISIBLE);
+                btnFinish.setVisibility(View.VISIBLE);
             } else {
                 btnPay.setVisibility(View.VISIBLE);
                 lytConfirmed.setVisibility(View.VISIBLE);
@@ -300,13 +305,47 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
         btnPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                JSONObject param = new JSONObject();
+                final JSONObject param = new JSONObject();
                 try {
                     param.put("transactionID", transactionID);
                     param.put("status", 1);
                     param.put("paymentMethod", "CASH");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
-                    paymentCash(param);
+                new AlertDialog.Builder(BookingTeacherActivity.this)
+                        .setTitle("Pesan")
+                        .setMessage("Apakah anda yakin akan menyelesaikan pembelajaran ini? Jika " +
+                                "anda sudah melaksanakan kegiatan pembelajaran silahkan klik tombol " +
+                                "\"Ya\", jika belum silahkan klik tombol \"Batal\".")
+                        .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                finish(param);
+                            }
+                        })
+                        .setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        })
+                        .show();
+            }
+        });
+
+        btnFinish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                JSONObject param = new JSONObject();
+                try {
+                    param.put("bookID", bookID);
+                    param.put("studentID", studentID);
+                    param.put("teacherID", teacherID);
+                    param.put("finish", 1);
+
+                    finish(param);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -438,9 +477,41 @@ public class BookingTeacherActivity extends AppCompatActivity implements SwipeRe
                             lytPaymentSuccess.setVisibility(View.VISIBLE);
                             lytConfirmed.setVisibility(View.GONE);
                             btnPay.setVisibility(View.GONE);
+                            btnFinish.setVisibility(View.VISIBLE);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                    bookLoading.dismiss();
+                    Log.e("error", t.getMessage());
+                }
+            });
+        }
+    }
+
+    private void finish(JSONObject param) {
+        bookLoading.show();
+        Call<String> call = RetrofitServices.sendStudentRequest().APIFinish(param);
+        if (call != null) {
+            call.enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                    bookLoading.dismiss();
+                    btnFinish.setVisibility(View.GONE);
+                    if (response.isSuccessful()) {
+                        try {
+                            JSONObject result = new JSONObject(response.body());
+                            String message = result.getString("message");
+                            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Terjadi Kesalahan", Toast.LENGTH_SHORT).show();
                     }
                 }
 

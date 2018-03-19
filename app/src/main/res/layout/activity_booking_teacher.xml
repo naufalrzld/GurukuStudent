@@ -16,417 +16,423 @@
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            android:padding="15dp"
-            android:layout_weight="1">
+            android:layout_height="wrap_content">
 
-            <android.support.v7.widget.CardView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="5dp">
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:padding="15dp"
+                android:layout_weight="1">
 
-                <LinearLayout
+                <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="15dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/title_teacher_name"
-                            android:textSize="16sp"
-                            android:textColor="@color/colorBlack" />
-
-                        <TextView
-                            android:id="@+id/tvNama"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            tools:text="Nama Guru"
-                            android:textSize="16sp"
-                            android:textColor="@color/colorPrimary"
-                            android:textStyle="bold"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginStart="10dp" />
-
-                    </LinearLayout>
+                    app:cardCornerRadius="5dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:padding="10dp"
-                        android:background="@color/colorPrimary"
-                        android:layout_marginTop="10dp">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_price_white_36dp" />
-
-                        <TextView
-                            android:id="@+id/tvPrice"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginStart="15dp"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="24sp"
-                            android:textStyle="bold"
-                            tools:text="Rp25.000" />
-
-                    </LinearLayout>
-
-                    <RadioGroup
-                        android:id="@+id/rgDuration"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:checkedButton="@+id/rbOneHour"
-                        android:orientation="horizontal">
-
-                        <RadioButton
-                            android:id="@+id/rbOneHour"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@drawable/rb_checked"
-                            android:button="@null"
-                            android:gravity="center"
-                            android:padding="10dp"
-                            android:text="@string/rb_title_one_h"
-                            android:textColor="@drawable/rb_text_checked" />
-
-                        <RadioButton
-                            android:id="@+id/rbTwoHour"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@drawable/rb_checked"
-                            android:button="@null"
-                            android:gravity="center"
-                            android:padding="10dp"
-                            android:text="@string/rb_title_two_h"
-                            android:textColor="@drawable/rb_text_checked" />
-
-                        <RadioButton
-                            android:id="@+id/rbThreeHour"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@drawable/rb_checked"
-                            android:button="@null"
-                            android:gravity="center"
-                            android:padding="10dp"
-                            android:text="@string/rb_title_three_h"
-                            android:textColor="@drawable/rb_text_checked" />
-
-                    </RadioGroup>
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-                android:text="@string/title_payment_method" />
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="5dp">
-
-                <LinearLayout
-                    android:id="@+id/lytNotConfirm"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="15dp"
-                    android:visibility="visible">
-
-                    <TextView
-                        android:id="@+id/tvConfirm"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/txt_not_confirm_1"
-                        android:visibility="visible"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/lytConfirmed"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="15dp"
-                    android:visibility="gone">
-
-                    <RadioGroup
-                        android:id="@+id/rgPaymentMethod"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:checkedButton="@+id/rbWallet"
-                        android:orientation="horizontal">
-
-                        <RadioButton
-                            android:id="@+id/rbWallet"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@drawable/rb_checked"
-                            android:button="@null"
-                            android:gravity="center"
-                            android:padding="10dp"
-                            android:text="@string/rb_title_wallet"
-                            android:textColor="@drawable/rb_text_checked" />
-
-                        <RadioButton
-                            android:id="@+id/rbCash"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@drawable/rb_checked"
-                            android:button="@null"
-                            android:gravity="center"
-                            android:padding="10dp"
-                            android:text="@string/rb_title_cash"
-                            android:textColor="@drawable/rb_text_checked" />
-
-                    </RadioGroup>
-
-                    <LinearLayout
-                        android:id="@+id/lytWallet"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
                         android:orientation="vertical"
+                        android:padding="15dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/title_teacher_name"
+                                android:textSize="16sp"
+                                android:textColor="@color/colorBlack" />
+
+                            <TextView
+                                android:id="@+id/tvNama"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:text="Nama Guru"
+                                android:textSize="16sp"
+                                android:textColor="@color/colorPrimary"
+                                android:textStyle="bold"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginStart="10dp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:background="@color/colorPrimary"
+                            android:layout_marginTop="10dp">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_price_white_36dp" />
+
+                            <TextView
+                                android:id="@+id/tvPrice"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginStart="15dp"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="24sp"
+                                android:textStyle="bold"
+                                tools:text="Rp25.000" />
+
+                        </LinearLayout>
+
+                        <RadioGroup
+                            android:id="@+id/rgDuration"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:checkedButton="@+id/rbOneHour"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/rbOneHour"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@drawable/rb_checked"
+                                android:button="@null"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:text="@string/rb_title_one_h"
+                                android:textColor="@drawable/rb_text_checked" />
+
+                            <RadioButton
+                                android:id="@+id/rbTwoHour"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@drawable/rb_checked"
+                                android:button="@null"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:text="@string/rb_title_two_h"
+                                android:textColor="@drawable/rb_text_checked" />
+
+                            <RadioButton
+                                android:id="@+id/rbThreeHour"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@drawable/rb_checked"
+                                android:button="@null"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:text="@string/rb_title_three_h"
+                                android:textColor="@drawable/rb_text_checked" />
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/title_payment_method" />
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="5dp">
+
+                    <LinearLayout
+                        android:id="@+id/lytNotConfirm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="15dp"
                         android:visibility="visible">
 
                         <TextView
+                            android:id="@+id/tvConfirm"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Coming Soon"
-                            android:textSize="24sp"
-                            android:layout_gravity="center_horizontal"
-                            android:padding="20dp"/>
-
-                        <!--<TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/txt_keterangan_wallet" />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:background="@color/colorGrey"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/txt_saldo_wallet"
-                            android:layout_gravity="center"/>
-
-                        <TextView
-                            android:id="@+id/tvSaldo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            tools:text="Rp50.000"
-                            android:textSize="24sp"
-                            android:textColor="@color/colorPrimary"
-                            android:textStyle="bold"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="5dp"/>-->
+                            android:text="@string/txt_not_confirm_1"
+                            android:visibility="visible"/>
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/lytCash"
+                        android:id="@+id/lytConfirmed"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="15dp"
+                        android:visibility="gone">
+
+                        <RadioGroup
+                            android:id="@+id/rgPaymentMethod"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:checkedButton="@+id/rbWallet"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/rbWallet"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@drawable/rb_checked"
+                                android:button="@null"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:text="@string/rb_title_wallet"
+                                android:textColor="@drawable/rb_text_checked" />
+
+                            <RadioButton
+                                android:id="@+id/rbCash"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@drawable/rb_checked"
+                                android:button="@null"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:text="@string/rb_title_cash"
+                                android:textColor="@drawable/rb_text_checked" />
+
+                        </RadioGroup>
+
+                        <LinearLayout
+                            android:id="@+id/lytWallet"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:orientation="vertical"
+                            android:visibility="visible">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Coming Soon"
+                                android:textSize="24sp"
+                                android:layout_gravity="center_horizontal"
+                                android:padding="20dp"/>
+
+                            <!--<TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/txt_keterangan_wallet" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="@color/colorGrey"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/txt_saldo_wallet"
+                                android:layout_gravity="center"/>
+
+                            <TextView
+                                android:id="@+id/tvSaldo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:text="Rp50.000"
+                                android:textSize="24sp"
+                                android:textColor="@color/colorPrimary"
+                                android:textStyle="bold"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="5dp"/>-->
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lytCash"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/txt_keterangan_cash" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lytPaymentSuccess"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
                         android:orientation="vertical"
+                        android:padding="15dp"
+                        android:gravity="center"
                         android:visibility="gone">
 
                         <TextView
+                            android:id="@+id/tvPaymentSuccess"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/txt_keterangan_cash" />
+                            android:text="Pemesanan Berhasil"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+                            android:textColor="@color/colorPrimary"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Silahkan hubungi Guru yang bersangkutan."/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:padding="10dp">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/ic_phone_number" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="15dp">
+
+                                    <TextView
+                                        android:id="@+id/tvNoTlp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="16sp"
+                                        tools:text="Nomor Telepon" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:background="@color/colorGrey" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:padding="10dp">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <ImageView
+                                        android:layout_width="35dp"
+                                        android:layout_height="35dp"
+                                        android:src="@drawable/icon_wa" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="15dp">
+
+                                    <TextView
+                                        android:id="@+id/tvNoWa"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="16sp"
+                                        tools:text="WhatsApp" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:background="@color/colorGrey" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:padding="10dp">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <ImageView
+                                        android:layout_width="35dp"
+                                        android:layout_height="35dp"
+                                        android:src="@drawable/icon_line" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="15dp">
+
+                                    <TextView
+                                        android:id="@+id/tvLineAccount"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="16sp"
+                                        tools:text="ID Line" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
-                </LinearLayout>
+                </android.support.v7.widget.CardView>
 
-                <LinearLayout
-                    android:id="@+id/lytPaymentSuccess"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="15dp"
-                    android:gravity="center"
-                    android:visibility="gone">
+                    android:text="@string/txt_attention"
+                    android:layout_marginTop="10dp" />
 
-                    <TextView
-                        android:id="@+id/tvPaymentSuccess"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Pemesanan Berhasil"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-                        android:textColor="@color/colorPrimary"/>
+            </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Silahkan hubungi Guru yang bersangkutan."/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginTop="10dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:padding="10dp">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/ic_phone_number" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="15dp">
-
-                                <TextView
-                                    android:id="@+id/tvNoTlp"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/colorBlack"
-                                    android:textSize="16sp"
-                                    tools:text="Nomor Telepon" />
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:background="@color/colorGrey" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:padding="10dp">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-
-                                <ImageView
-                                    android:layout_width="35dp"
-                                    android:layout_height="35dp"
-                                    android:src="@drawable/icon_wa" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="15dp">
-
-                                <TextView
-                                    android:id="@+id/tvNoWa"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/colorBlack"
-                                    android:textSize="16sp"
-                                    tools:text="WhatsApp" />
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:background="@color/colorGrey" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:padding="10dp">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-
-                                <ImageView
-                                    android:layout_width="35dp"
-                                    android:layout_height="35dp"
-                                    android:src="@drawable/icon_line" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="15dp">
-
-                                <TextView
-                                    android:id="@+id/tvLineAccount"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/colorBlack"
-                                    android:textSize="16sp"
-                                    tools:text="ID Line" />
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_attention"
-                android:layout_marginTop="10dp" />
-
-        </LinearLayout>
+        </ScrollView>
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
@@ -443,6 +449,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/txt_btn_pay"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/btn_pay"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/btnFinish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_btn_finish"
         android:textColor="@color/colorWhite"
         android:background="@drawable/btn_pay"
         android:visibility="gone"/>
